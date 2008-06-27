@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar" sourcepath="lib/commons-logging-1.1.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/testing/junit-4.4.jar" sourcepath="lib/testing/junit-4.4-src.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -21,7 +21,7 @@ public abstract class PageTemplate extends JPanel {
     * 
     * @param page The page to display.
     */
-   protected abstract void setPage(final WizardPage page);
+   public abstract void setPage(final WizardPage page);
 
    /**
     * Registers a WizardController with this class.

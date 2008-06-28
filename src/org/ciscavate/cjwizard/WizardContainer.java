@@ -62,14 +62,14 @@ public class WizardContainer extends JPanel implements WizardController {
       }
       @Override
       public void actionPerformed(ActionEvent e) {
-         prevPage();
+         prev();
       }
    };
    
    private final AbstractAction _nextAction = new AbstractAction("Next >"){
       @Override
       public void actionPerformed(ActionEvent e) {
-         nextPage();
+         next();
       }
    };
 
@@ -108,7 +108,7 @@ public class WizardContainer extends JPanel implements WizardController {
       _template.registerController(this);
       
       // get the first page:
-      nextPage();
+      next();
    }
 
    /**
@@ -141,7 +141,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * The PageFactory is not queried for pages when moving *backwards*.
     */
-   protected void prevPage() {
+   public void prev() {
       log.debug("prev. page");
       
       _path.remove(_path.size() - 1);
@@ -166,7 +166,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * 
     */
-   protected void nextPage() {
+   public void next() {
       log.debug("next page");
 
       if (0 != _path.size()){
@@ -191,6 +191,39 @@ public class WizardContainer extends JPanel implements WizardController {
       firePageChanged(curPage, getPath());
    }
 
+   public void visitPage(WizardPage page){
+      int idx = _path.indexOf(page);
+      
+      if (-1 == idx){
+         // new page
+         if (0 != _path.size()){
+            // get the settings from the page that is going away:
+            WizardPage lastPage = _path.get(_path.size()-1);
+            getSettings().newPage(lastPage.getId());
+            lastPage.updateSettings(getSettings());
+         }
+         
+         getPath().add(page);
+      } else {
+         // page is in the path at idx.
+         
+         // first, roll back the settings and trim the path:
+         for (int i=_path.size()-1; i > idx; i--){
+            getSettings().rollBack();
+            _path.remove(i);
+         }
+      }
+      
+      if (_path.size() > 1){
+         setPrevEnabled(true);
+      }
+
+      setNextEnabled(true);
+      page.rendering(_path, getSettings());
+      _template.setPage(page);
+      firePageChanged(page, _path);
+   }
+   
    /**
     * @param nextPage
     * @param path
@@ -204,7 +237,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * 
     */
-   protected void finish() {
+   public void finish() {
       log.debug("finish");
       
       for (WizardListener l : _listeners) {
@@ -215,7 +248,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * 
     */
-   protected void cancel() {
+   public void cancel() {
       log.debug("cancel");
       
       for (WizardListener l : _listeners) {

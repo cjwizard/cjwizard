@@ -52,8 +52,16 @@ public class WizardSettings {
          _oldPageMaps.put(current().id, current());
       }
       
+      // If we've seen this ID before, use it again:
+      IdMapTuple curTuple;
+      if (_oldPageMaps.containsKey(id)){
+         curTuple = _oldPageMaps.get(id);
+      }else{
+         curTuple = new IdMapTuple(id, new HashMap<String, Object>());
+      }
+      
       // push the new map:
-      _pageStack.push(new IdMapTuple(id, new HashMap<String, Object>()));
+      _pageStack.push(curTuple);
    }
 
    public Object put(String key, Object value) {

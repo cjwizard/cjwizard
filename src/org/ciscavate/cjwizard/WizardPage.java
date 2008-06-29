@@ -4,6 +4,7 @@
 package org.ciscavate.cjwizard;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.util.HashSet;
@@ -40,7 +41,7 @@ public abstract class WizardPage extends JPanel {
    private WizardController _controller;
 
    /**
-    * The collection of components that have been added to this 
+    * The collection of components that have been added to this
     * wizard page with set names.
     */
    protected Set<Component> _namedComponents = new HashSet<Component>();
@@ -99,7 +100,7 @@ public abstract class WizardPage extends JPanel {
     */
    private Object getValue(Component c) {
       Object val = null;
-      
+
       if (c instanceof CustomWizardComponent) {
          val = ((CustomWizardComponent) c).getValue();
       } else if (c instanceof JTextComponent) {
@@ -180,6 +181,29 @@ public abstract class WizardPage extends JPanel {
       public void componentAdded(ContainerEvent e) {
          log.trace("component added: "+e.getChild());
          Component newComp = e.getChild();
+         
+         storeIfNamed(newComp);
+
+      }
+
+      /**
+       * @param newComp
+       */
+      private void storeIfNamed(Component newComp) {
+         if (newComp instanceof CustomWizardComponent
+               && null != newComp.getName()){
+            _namedComponents.add(newComp);
+            // don't recurse into custom components.
+            return;
+         }
+         
+         if (newComp instanceof Container){
+            // recurse:
+            Component[] children = ((Container)newComp).getComponents();
+            for (Component c : children){
+               storeIfNamed(c);
+            }
+         }
          
          if (null != newComp.getName()){
             _namedComponents.add(newComp);

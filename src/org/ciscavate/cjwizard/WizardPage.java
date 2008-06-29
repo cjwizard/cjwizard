@@ -3,15 +3,32 @@
  */
 package org.ciscavate.cjwizard;
 
+import java.awt.Component;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.swing.AbstractButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.text.JTextComponent;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * @author rcreswick
  *
  */
 public abstract class WizardPage extends JPanel {
+
+   /**
+    * Commons logging log instance
+    */
+   private static Log log = LogFactory.getLog(WizardPage.class);
    
    private static long _idCounter=0;
    
@@ -21,6 +38,12 @@ public abstract class WizardPage extends JPanel {
    private final String _description;
 
    private WizardController _controller;
+
+   /**
+    * The collection of components that have been added to this 
+    * wizard page with set names.
+    */
+   protected Set<Component> _namedComponents = new HashSet<Component>();
    
    /**
     * Constructor.  Sets the title and description for
@@ -33,6 +56,8 @@ public abstract class WizardPage extends JPanel {
    public WizardPage(String title, String description){
       _title = title;
       _description = description;
+      
+      addContainerListener(new WPContainerListener());
    }
    
    /**
@@ -61,9 +86,35 @@ public abstract class WizardPage extends JPanel {
     * 
     */
    public void updateSettings(WizardSettings settings){
-      
+      for (Component c : _namedComponents){
+         settings.put(c.getName(), getValue(c));
+      }
    }
    
+   /**
+    * Gets the value from a component.
+    * 
+    * @param c
+    * @return
+    */
+   private Object getValue(Component c) {
+      Object val = null;
+      
+      if (c instanceof JTextComponent) {
+         val = ((JTextComponent) c).getText();
+      } else if (c instanceof AbstractButton){
+         val = ((AbstractButton) c).isSelected();
+      } else if (c instanceof JComboBox){
+         val = ((JComboBox) c).getSelectedItem();
+      } else if (c instanceof JList){
+         val = ((JList) c).getSelectedValues();
+      } else {
+         log.warn("Unknown component: "+c);
+      }
+      
+      return val;
+   }
+
    /**
     * Invoked immediately prior to rendering the wizard page on screen.
     * 
@@ -104,5 +155,43 @@ public abstract class WizardPage extends JPanel {
       return getId() + ": " +getTitle();
    }
 
+   /**
+    * @return
+    */
+   protected Set<Component> getNamedComponents() {
+      return _namedComponents;
+   }
+
+   /**
+    * Listener to keep track of the components as they are added and removed
+    * from this wizard page.
+    * 
+    * @author rogue
+    *
+    */
+   private class WPContainerListener implements ContainerListener {
+
+      /* (non-Javadoc)
+       * @see java.awt.event.ContainerListener#componentAdded(java.awt.event.ContainerEvent)
+       */
+      @Override
+      public void componentAdded(ContainerEvent e) {
+         log.trace("component added: "+e.getChild());
+         Component newComp = e.getChild();
+         
+         if (null != newComp.getName()){
+            _namedComponents.add(newComp);
+         }
+      }
+
+      /* (non-Javadoc)
+       * @see java.awt.event.ContainerListener#componentRemoved(java.awt.event.ContainerEvent)
+       */
+      @Override
+      public void componentRemoved(ContainerEvent e) {
+         log.trace("component removed: "+e.getChild());
+         _namedComponents.remove(e.getChild());
+      }
+   }
 
 }

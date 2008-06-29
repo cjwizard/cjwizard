@@ -8,11 +8,13 @@ import java.util.Set;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+
 
 /**
  * @author rogue
@@ -20,6 +22,17 @@ import org.junit.Test;
  */
 public class WizardPageTest {
 
+   private class CustomTestComponent extends JPanel implements CustomWizardComponent {
+      /* (non-Javadoc)
+       * @see org.ciscavate.cjwizard.CustomWizardComponent#getValue()
+       */
+      @Override
+      public Object getValue() {
+         return "sample value";
+      }
+      
+   }
+   
    private class TestWizardPage extends WizardPage{
 
       /**
@@ -36,11 +49,14 @@ public class WizardPageTest {
          JCheckBox box = new JCheckBox("check box");
          box.setName("test box");
          
+         CustomTestComponent ctc = new CustomTestComponent();
+         ctc.setName("custom comp");
+         
          add(new JLabel("test label"));
          
          add(field);
          add(box);
-         
+         add(ctc);
       }
       
    }
@@ -57,7 +73,7 @@ public class WizardPageTest {
       
       Set<Component> components = page.getNamedComponents();
       
-      Assert.assertEquals("wrong number of named components", 2, components.size());
+      Assert.assertEquals("wrong number of named components", 3, components.size());
    }
    
    /**
@@ -77,6 +93,8 @@ public class WizardPageTest {
             settings.keySet().contains("test box"));
       Assert.assertTrue("Key set did not contain needed key.", 
             settings.keySet().contains("test field"));
+      Assert.assertTrue("Key set did not contain needed key.", 
+            settings.keySet().contains("custom comp"));
    }
    
    /**
@@ -98,6 +116,10 @@ public class WizardPageTest {
       
       String fieldVal = (String)settings.get("test field");
       Assert.assertEquals("Wrong value.", "some text", fieldVal);
+
+      String ctcValue = (String)settings.get("custom comp");
+
+      Assert.assertEquals("Wrong value.", "sample value", ctcValue);
       
    }
 }

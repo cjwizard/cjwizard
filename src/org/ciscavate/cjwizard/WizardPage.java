@@ -100,7 +100,9 @@ public abstract class WizardPage extends JPanel {
    private Object getValue(Component c) {
       Object val = null;
       
-      if (c instanceof JTextComponent) {
+      if (c instanceof CustomWizardComponent) {
+         val = ((CustomWizardComponent) c).getValue();
+      } else if (c instanceof JTextComponent) {
          val = ((JTextComponent) c).getText();
       } else if (c instanceof AbstractButton){
          val = ((AbstractButton) c).isSelected();

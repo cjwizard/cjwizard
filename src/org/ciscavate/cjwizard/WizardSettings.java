@@ -35,6 +35,10 @@ public class WizardSettings {
       return keys;
    }
    
+   public boolean containsKey(String key){
+      return keySet().contains(key);
+   }
+      
    /**
     * 
     */

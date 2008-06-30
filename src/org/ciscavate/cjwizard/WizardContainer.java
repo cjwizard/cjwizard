@@ -261,8 +261,11 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    public void addWizardListener(WizardListener listener){
       ExceptionUtilities.checkNull(listener, "listener");
-      if (!_listeners.contains(listener))
+      if (!_listeners.contains(listener)){
          _listeners.add(listener);
+         WizardPage curPage = _path.get(_path.size()-1);
+         listener.onPageChanged(curPage, getPath());
+      }
    }
    
    /* (non-Javadoc)

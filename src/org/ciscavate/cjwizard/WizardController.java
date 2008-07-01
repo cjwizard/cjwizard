@@ -72,16 +72,22 @@ public interface WizardController {
    public void cancel();
    
    /**
+    * Sets the enabled status of the Next Button.
+    * 
     * @param enabled
     */
    public void setNextEnabled(boolean enabled);
 
    /**
+    * Sets the enabled status of the Prev. button.
+    * 
     * @param enabled
     */
    public void setPrevEnabled(boolean enabled);
 
    /**
+    * Sets the enabled status of the Finish button.
+    * 
     * @param enabled
     */
    public void setFinishEnabled(boolean enabled);

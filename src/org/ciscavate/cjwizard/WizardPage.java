@@ -31,13 +31,30 @@ public abstract class WizardPage extends JPanel {
     */
    private static Log log = LogFactory.getLog(WizardPage.class);
    
+   /**
+    * Count of WizardPages, used to get unique IDs
+    */
    private static long _idCounter=0;
    
+   /**
+    * Unique ID for this wizard page.
+    */
    private final long _id = _idCounter++;
 
+   /**
+    * The title of this wizard page (a 1-2 word string)
+    */
    private final String _title;
+   
+   /**
+    * A longer description of this wizard page.
+    */
    private final String _description;
 
+   /**
+    * The WizardController that contains this wizard page.
+    * (often the WizardContainer)
+    */
    private WizardController _controller;
 
    /**
@@ -70,10 +87,20 @@ public abstract class WizardPage extends JPanel {
       return ""+_id;
    }
    
+   /**
+    * Gets the short 1-2 word description of this WizardPage
+    * 
+    * @return The WizardPage title
+    */
    public String getTitle(){
       return _title;
    }
    
+   /**
+    * Gets a longer description of this WizardPage.
+    * 
+    * @return The WizardPage description.
+    */
    public String getDescription(){
       return _description;
    }
@@ -95,8 +122,8 @@ public abstract class WizardPage extends JPanel {
    /**
     * Gets the value from a component.
     * 
-    * @param c
-    * @return
+    * @param c The component.
+    * @return The value.
     */
    private Object getValue(Component c) {
       Object val = null;
@@ -139,21 +166,39 @@ public abstract class WizardPage extends JPanel {
       _controller = controller;
    }
    
+   /**
+    * Set the enabled status of the Next button.
+    * 
+    * @param enabled true to enable it, false otherwise.
+    */
    protected void setNextEnabled(boolean enabled){
       if (null != _controller)
          _controller.setNextEnabled(enabled);
    }
    
+   /**
+    * Set the enabled status of the Prev button.
+    * 
+    * @param enabled true to enable it, false otherwise.
+    */
    protected void setPrevEnabled(boolean enabled){
       if (null != _controller)
          _controller.setPrevEnabled(enabled);
    }
    
+   /**
+    * Set the enabled status of the Finished button.
+    * 
+    * @param enabled true to enable it, false otherwise.
+    */
    protected void setFinishEnabled(boolean enabled){
       if (null != _controller)
          _controller.setFinishEnabled(enabled);
    }
    
+   /**
+    * Returns a string reperesntation of this wizard page.
+    */
    public String toString(){
       return getId() + ": " +getTitle();
    }
@@ -170,7 +215,6 @@ public abstract class WizardPage extends JPanel {
     * from this wizard page.
     * 
     * @author rogue
-    *
     */
    private class WPContainerListener implements ContainerListener {
 

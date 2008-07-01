@@ -22,6 +22,9 @@ import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
 import org.ciscavate.utilities.ExceptionUtilities;
 
 /**
+ * This is the primary "Wizard" class.  It must be instantiated with a
+ * PageFactory and then treated as a JPanel.
+ * 
  * @author rcreswick
  *
  */

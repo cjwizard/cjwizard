@@ -112,7 +112,7 @@
 
   <target name="src-jar"
 	  depends="create.dist.dir"
-	  description="Creates a source jar for the package">
+	  description="Creates a source jar for the package, usefull in eclipse.">
     <jar destfile="${dist.dir}/${ant.project.name}-src.jar"
 	 basedir="${src.dir}"
 	 />

@@ -1,5 +1,17 @@
 /**
+ * Copyright 2008  Eugene Creswick
  * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.ciscavate.cjwizard.pagetemplates;
 
@@ -14,7 +26,7 @@ import javax.swing.border.Border;
 import org.ciscavate.cjwizard.WizardPage;
 
 /**
- * Simple PageTemplate that lists the WizardPage description at the top 
+ * Simple PageTemplate that lists the WizardPage description at the top
  * of each page in the wizard.
  * 
  * @author rogue
@@ -26,7 +38,7 @@ public class TitledPageTemplate extends PageTemplate {
     */
    private static final long serialVersionUID = -2282167921679786408L;
 
-   /** 
+   /**
     * The label to display the current page description.
     */
    private final JLabel _title = new JLabel();
@@ -60,7 +72,7 @@ public class TitledPageTemplate extends PageTemplate {
     */
    @Override
    public void setPage(final WizardPage page) {
-      // Since we're using a nested DefaultPageTemplate, we just need to 
+      // Since we're using a nested DefaultPageTemplate, we just need to
       // delegate to that object, and then do whatever is necessary to update
       // the additional widgets introduced by this PageTemplate.
       
@@ -73,7 +85,7 @@ public class TitledPageTemplate extends PageTemplate {
             _innerTemplate.setPage(page);
             
             // Set the new title text:
-            _title.setText(page.getDescription());            
+            _title.setText(page.getDescription());
          }
       });
    }

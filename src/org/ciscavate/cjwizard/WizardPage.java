@@ -76,6 +76,7 @@ public abstract class WizardPage extends JPanel {
       _description = description;
       
       addContainerListener(new WPContainerListener());
+      this.setDoubleBuffered(true);
    }
    
    /**

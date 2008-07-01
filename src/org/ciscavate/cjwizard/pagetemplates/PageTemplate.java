@@ -1,9 +1,12 @@
 /**
  * 
  */
-package org.ciscavate.cjwizard;
+package org.ciscavate.cjwizard.pagetemplates;
 
 import javax.swing.JPanel;
+
+import org.ciscavate.cjwizard.WizardController;
+import org.ciscavate.cjwizard.WizardPage;
 
 /**
  * @author rcreswick
@@ -28,7 +31,7 @@ public abstract class PageTemplate extends JPanel {
     * 
     * @param controller
     */
-   protected void registerController(WizardController controller) {
+   public void registerController(WizardController controller) {
       _controller = controller;
    }
 

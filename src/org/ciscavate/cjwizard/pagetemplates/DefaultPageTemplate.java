@@ -1,12 +1,14 @@
 /**
  * 
  */
-package org.ciscavate.cjwizard;
+package org.ciscavate.cjwizard.pagetemplates;
 
 import java.awt.CardLayout;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ciscavate.cjwizard.WizardContainer;
+import org.ciscavate.cjwizard.WizardPage;
 
 /**
  * This class provides a point at which third-party code can

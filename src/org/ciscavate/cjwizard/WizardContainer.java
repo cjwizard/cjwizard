@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ciscavate.cjwizard.pagetemplates.DefaultPageTemplate;
+import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
 import org.ciscavate.utilities.ExceptionUtilities;
 
 /**

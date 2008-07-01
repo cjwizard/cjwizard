@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ciscavate.cjwizard.pagetemplates.TitledPageTemplate;
 
 /**
  * This demo class uses a JDialog to hold the wizard.
@@ -41,7 +42,8 @@ public class WizardTest extends JDialog {
    public WizardTest(){
       // first, build the wizard.  The TestFactory defines the
       // wizard content and behavior.
-      final WizardContainer wc = new WizardContainer(new TestFactory());
+      final WizardContainer wc = 
+         new WizardContainer(new TestFactory(), new TitledPageTemplate());
       
       // add a wizard listener to update the dialog titles and notify the
       // surrounding application of the state of the wizard:

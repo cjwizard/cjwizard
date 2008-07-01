@@ -118,11 +118,30 @@
 	 />
   </target>  
 
+  <target name="javadoc"
+	  depends="create.api.dir"
+	  description="Generates the java docs for this package.">
+    <javadoc
+	destdir="${api.dir}"
+	author="true"
+	version="true"
+	use="true"
+	windowtitle="${ant.project.name}"
+	linksource="yes">
+      <packageset dir="src">
+	<include name="**"/>
+      </packageset>
+      <link href="http://java.sun.com/javase/6/docs/api/"/>
+    </javadoc>    
+  </target>
+
+
   <target name="clean"
 	  description="Removes the ephemeral files/directories.">
     <delete dir="${bin.dir}"/>
     <delete dir="${test.out}"/>
     <delete dir="${dist.dir}"/>
+    <delete dir="${doc.dir}"/>
   </target>
   
   <!-- *************************** -->
@@ -140,4 +159,12 @@
     <mkdir dir="${test.out}/results"/>
   </target>
 
+  <target name="create.doc.dir">
+    <mkdir dir="${doc.dir}"/>
+  </target>
+
+  <target name="create.api.dir"
+	  depends="create.doc.dir">
+    <mkdir dir="${api.dir}"/>
+  </target>
 </project>

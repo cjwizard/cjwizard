@@ -30,4 +30,12 @@ public interface CustomWizardComponent {
     * @return The value.
     */
    public Object getValue();
+   
+   /**
+    * Gets the name of this component.
+    * (this is provided by the Swing component)
+    * 
+    * @return The name, as a string.
+    */
+   public String getName();
 }

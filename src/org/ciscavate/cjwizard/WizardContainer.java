@@ -73,6 +73,11 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    private final PageFactory _factory;
    
+   /**
+    * The panel containing any dynamically-added buttons.
+    */
+   private JPanel _extraButtonPanel;
+   
    private final AbstractAction _prevAction = new AbstractAction("< Prev"){
       {
          setEnabled(false);
@@ -136,9 +141,14 @@ public class WizardContainer extends JPanel implements WizardController {
       final JButton nextBtn = new JButton(_nextAction);
       final JButton finishBtn = new JButton(_finishAction);
       final JButton cancelBtn = new JButton(_cancelAction);
-           
+      
+      _extraButtonPanel = new JPanel();
+      _extraButtonPanel.setLayout(
+            new BoxLayout(_extraButtonPanel, BoxLayout.LINE_AXIS));
+      
       final JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
+      buttonPanel.add(_extraButtonPanel);
       buttonPanel.add(Box.createHorizontalGlue());
       buttonPanel.add(prevBtn);
       buttonPanel.add(Box.createHorizontalStrut(5));
@@ -154,7 +164,24 @@ public class WizardContainer extends JPanel implements WizardController {
       this.add(_template, BorderLayout.CENTER);
       this.add(buttonPanel, BorderLayout.SOUTH);
    }
-
+   
+   /**
+    * Add additional buttons to the wizard controls. Any previously-added
+    * buttons are cleared on each call to this method.
+    * 
+    * @param buttons
+    *           The buttons to add to the wizard controls.
+    */
+   public void setButtons(JButton... buttons)
+   {
+      _extraButtonPanel.removeAll();
+      for (JButton button : buttons)
+      {
+         _extraButtonPanel.add(button);
+         _extraButtonPanel.add(Box.createHorizontalStrut(10));
+      }
+   }
+   
    /**
     * The PageFactory is not queried for pages when moving *backwards*.
     */

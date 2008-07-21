@@ -166,9 +166,7 @@ public class WizardContainer extends JPanel implements WizardController {
       getSettings().rollBack();
       
       assert 1 <= _path.size() : "Invalid path size! "+_path.size();
-      if (_path.size() <= 1){
-         setPrevEnabled(false);
-      }
+      setPrevEnabled(_path.size() > 1);
       
       WizardPage curPage =  _path.get(_path.size() - 1);
       
@@ -197,9 +195,7 @@ public class WizardContainer extends JPanel implements WizardController {
       curPage.registerController(this);
      
       _path.add(curPage);
-      if (_path.size() > 1){
-         setPrevEnabled(true);
-      }
+      setPrevEnabled(_path.size() > 1);
       
       // tell the page that it is about to be rendered:
       curPage.rendering(getPath(), getSettings());
@@ -231,9 +227,7 @@ public class WizardContainer extends JPanel implements WizardController {
          }
       }
       
-      if (_path.size() > 1){
-         setPrevEnabled(true);
-      }
+      setPrevEnabled(_path.size() > 1);
 
       setNextEnabled(true);
       page.rendering(_path, getSettings());

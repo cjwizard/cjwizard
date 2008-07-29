@@ -86,7 +86,7 @@ public class WizardPageTest {
    public void testUpdateSettings_keysExist() {
       WizardPage page = new TestWizardPage("Test Page","");
       
-      WizardSettings settings = new WizardSettings();
+      WizardSettings settings = new StackWizardSettings();
       page.updateSettings(settings);
       
       Assert.assertTrue("Key set did not contain needed key.", 
@@ -107,7 +107,7 @@ public class WizardPageTest {
    public void testUpdateSettings_getValues() {
       WizardPage page = new TestWizardPage("Test Page","");
       
-      WizardSettings settings = new WizardSettings();
+      WizardSettings settings = new StackWizardSettings();
       page.updateSettings(settings);
 
 

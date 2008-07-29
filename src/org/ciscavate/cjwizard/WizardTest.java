@@ -55,7 +55,9 @@ public class WizardTest extends JDialog {
       // first, build the wizard.  The TestFactory defines the
       // wizard content and behavior.
       final WizardContainer wc =
-         new WizardContainer(new TestFactory(), new TitledPageTemplate());
+         new WizardContainer(new TestFactory(),
+                             new TitledPageTemplate(),
+                             new StackWizardSettings());
       
       // add a wizard listener to update the dialog titles and notify the
       // surrounding application of the state of the wizard:

@@ -50,7 +50,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * Storage for all the collected information.
     */
-   private final WizardSettings _settings = new WizardSettings();
+   private final WizardSettings _settings;
 
    /**
     * The path from the start of the dialog to the current location.
@@ -113,18 +113,20 @@ public class WizardContainer extends JPanel implements WizardController {
    };
    
    /**
-    * Constructor, uses default PageTemplate.
+    * Constructor, uses default PageTemplate and {@link StackWizardSettings}.
     */
    public WizardContainer(PageFactory factory){
-      this(factory, new DefaultPageTemplate());
+      this(factory, new DefaultPageTemplate(), new StackWizardSettings());
    }
    
    /**
     * Constructor.
     */
-   public WizardContainer(PageFactory factory, PageTemplate template){
+   public WizardContainer(PageFactory factory, PageTemplate template,
+                          WizardSettings settings){
       _factory = factory;
       _template = template;
+      _settings = settings;
      
       initComponents();
       _template.registerController(this);

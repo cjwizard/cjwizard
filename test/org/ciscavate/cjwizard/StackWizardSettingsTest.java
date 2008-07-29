@@ -13,14 +13,14 @@ import org.junit.Test;
  * @author rcreswick
  *
  */
-public class WizardSettingsTest {
+public class StackWizardSettingsTest {
 
    /**
-    * Test method for {@link org.ciscavate.cjwizard.WizardSettings#rollBack(java.lang.String)}.
+    * Test method for {@link org.ciscavate.cjwizard.StackWizardSettings#rollBack(java.lang.String)}.
     */
    @Test
    public void testRollBack() {
-      WizardSettings s = new WizardSettings();
+      WizardSettings s = new StackWizardSettings();
 
       final String key1 = "key1";
       final String key2 = "key2";
@@ -71,7 +71,7 @@ public class WizardSettingsTest {
       final String value2 = "value2";
       final String value3 = "value3";
       
-      WizardSettings s = new WizardSettings();
+      WizardSettings s = new StackWizardSettings();
       s.newPage("page1");
       s.put(key1, value1);
       s.put(key2, value2);
@@ -93,7 +93,7 @@ public class WizardSettingsTest {
       String[] oracle1 = {key1, key2};
       String[] oracle2 = {key1, key2, key3};
       
-      WizardSettings s = new WizardSettings();
+      WizardSettings s = new StackWizardSettings();
       s.newPage("page1");
       s.put(key1, value1);
       s.put(key2, value2);

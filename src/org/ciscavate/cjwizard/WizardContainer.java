@@ -50,7 +50,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * Storage for all the collected information.
     */
-   private final WizardSettings _settings;
+   private WizardSettings _settings;
 
    /**
     * The path from the start of the dialog to the current location.
@@ -215,9 +215,8 @@ public class WizardContainer extends JPanel implements WizardController {
 
       if (0 != _path.size()){
          // get the settings from the page that is going away:
-         WizardPage lastPage = _path.get(_path.size()-1);
-         getSettings().newPage(lastPage.getId());
-         lastPage.updateSettings(getSettings());
+         getSettings().newPage(lastPage().getId());
+         lastPage().updateSettings(getSettings());
       }
       
       WizardPage curPage = _factory.createPage(getPath(), getSettings());
@@ -320,7 +319,22 @@ public class WizardContainer extends JPanel implements WizardController {
     * @see org.ciscavate.cjwizard.WizardController#getSettings()
     */
    public WizardSettings getSettings(){
+      if (null != lastPage()) {
+         lastPage().updateSettings(_settings);
+      }
       return _settings;
+   }
+   
+   /**
+    * Set/load the specified settings map nad re-render the current page.
+    * 
+    * @param settings
+    *           The settings to load.
+    */
+   public void setSettings(WizardSettings settings)
+   {
+      _settings = settings;
+      lastPage().rendering(_path, _settings);
    }
    
    /* (non-Javadoc)
@@ -328,6 +342,15 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    public List<WizardPage> getPath() {
       return _path;
+   }
+   
+   /**
+    * @return The last page of the current {@link #_path} or null if the path is
+    *         empty.
+    */
+   public WizardPage lastPage() {
+      int lastIdx = _path.size() - 1;
+      return (lastIdx < 0) ? null : _path.get(lastIdx);
    }
 
    /* (non-Javadoc)
@@ -350,4 +373,5 @@ public class WizardContainer extends JPanel implements WizardController {
    public void setFinishEnabled(boolean enabled) {
       _finishAction.setEnabled(enabled);
    }
+
 }

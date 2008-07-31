@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -132,6 +133,7 @@ public abstract class WizardPage extends JPanel {
       }
    }
    
+   
    /**
     * Gets the value from a component.
     * 
@@ -157,6 +159,47 @@ public abstract class WizardPage extends JPanel {
       
       return val;
    }
+   
+   /**
+    * Sets the value of a component.
+    * 
+    * @param c The component.
+    * @param o The value.
+    */
+   private void setValue(Component c, Object o) {
+
+      if (null == o) {
+         // don't set null values
+         return;
+      }
+      if (c instanceof CustomWizardComponent) {
+         ((CustomWizardComponent) c).setValue(o);
+      } else if (c instanceof JTextComponent) {
+         String text = (String)o;
+         if (!text.isEmpty()) {
+            ((JTextComponent) c).setText((String)o);
+         }
+      } else if (c instanceof AbstractButton){
+         ((AbstractButton) c).setSelected((Boolean)o);
+      } else if (c instanceof JComboBox){
+         ((JComboBox) c).setSelectedItem(o);
+      } else if (c instanceof JList){
+         List<Object> items = Arrays.asList((Object[])o);
+         JList list = (JList)c;
+         int[] indices = new int[items.size()];
+         int i = 0;
+         for (int j = 0; j < list.getModel().getSize(); j++) {
+            Object e = list.getModel().getElementAt(j);
+            if (items.contains(e)) {
+               indices[i++] = j;
+            }
+         }
+         list.setSelectedIndices(indices);
+      } else {
+         log.warn("Unknown component: "+c);
+      }
+      
+   }
 
    /**
     * Invoked immediately prior to rendering the wizard page on screen.
@@ -164,8 +207,10 @@ public abstract class WizardPage extends JPanel {
     * This provides an opportunity to adjust the next/finish buttons and
     * customize the ui based on feedback.
     */
-   public void rendering(List<WizardPage> path, WizardSettings settings){
-      // intentionally empty. (default implementation)
+   public void rendering(List<WizardPage> path, WizardSettings settings) {
+      for (Component c : _namedComponents){
+         setValue(c, settings.get(c.getName()));
+      }
    }
    
    /**
@@ -212,6 +257,7 @@ public abstract class WizardPage extends JPanel {
    /**
     * Returns a string reperesntation of this wizard page.
     */
+   @Override
    public String toString(){
       return getId() + ": " +getTitle();
    }

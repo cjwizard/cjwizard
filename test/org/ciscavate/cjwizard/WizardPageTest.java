@@ -31,6 +31,14 @@ public class WizardPageTest {
          return "sample value";
       }
       
+      /* (non-Javadoc)
+       * @see org.ciscavate.cjwizard.CustomWizardComponent#setValue(java.lang.Object)
+       */
+      @Override
+      public void setValue(Object o)
+      {
+         // no-op
+      }
    }
    
    private class TestWizardPage extends WizardPage{
@@ -89,11 +97,11 @@ public class WizardPageTest {
       WizardSettings settings = new StackWizardSettings();
       page.updateSettings(settings);
       
-      Assert.assertTrue("Key set did not contain needed key.", 
+      Assert.assertTrue("Key set did not contain needed key.",
             settings.keySet().contains("test box"));
-      Assert.assertTrue("Key set did not contain needed key.", 
+      Assert.assertTrue("Key set did not contain needed key.",
             settings.keySet().contains("test field"));
-      Assert.assertTrue("Key set did not contain needed key.", 
+      Assert.assertTrue("Key set did not contain needed key.",
             settings.keySet().contains("custom comp"));
    }
    

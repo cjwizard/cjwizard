@@ -151,6 +151,7 @@ public class WizardTest extends JDialog {
                 * displayed:
                 */
                public void rendering(List<WizardPage> path, WizardSettings settings) {
+                  super.rendering(path, settings);
                   setFinishEnabled(true);
                   setNextEnabled(false);
                }

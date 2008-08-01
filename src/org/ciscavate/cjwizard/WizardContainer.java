@@ -215,21 +215,22 @@ public class WizardContainer extends JPanel implements WizardController {
 
       if (0 != _path.size()){
          // get the settings from the page that is going away:
-         getSettings().newPage(lastPage().getId());
-         lastPage().updateSettings(getSettings());
+         WizardPage lastPage = currentPage();
+         getSettings().newPage(lastPage.getId());
+         lastPage.updateSettings(getSettings());
       }
       
-      WizardPage curPage = _factory.createPage(getPath(), getSettings());
-      curPage.registerController(this);
+      WizardPage newPage = _factory.createPage(getPath(), getSettings());
+      newPage.registerController(this);
      
-      _path.add(curPage);
+      _path.add(newPage);
       setPrevEnabled(_path.size() > 1);
       
       // tell the page that it is about to be rendered:
-      curPage.rendering(getPath(), getSettings());
-      _template.setPage(curPage);
+      newPage.rendering(getPath(), getSettings());
+      _template.setPage(newPage);
 
-      firePageChanged(curPage, getPath());
+      firePageChanged(newPage, getPath());
    }
 
    public void visitPage(WizardPage page){
@@ -319,9 +320,6 @@ public class WizardContainer extends JPanel implements WizardController {
     * @see org.ciscavate.cjwizard.WizardController#getSettings()
     */
    public WizardSettings getSettings(){
-      if (null != lastPage()) {
-         lastPage().updateSettings(_settings);
-      }
       return _settings;
    }
    
@@ -334,7 +332,7 @@ public class WizardContainer extends JPanel implements WizardController {
    public void setSettings(WizardSettings settings)
    {
       _settings = settings;
-      lastPage().rendering(_path, _settings);
+      currentPage().rendering(_path, _settings);
    }
    
    /* (non-Javadoc)
@@ -345,10 +343,10 @@ public class WizardContainer extends JPanel implements WizardController {
    }
    
    /**
-    * @return The last page of the current {@link #_path} or null if the path is
-    *         empty.
+    * @return The last (current) page of the current {@link #_path} or null if
+    *         the path is empty.
     */
-   public WizardPage lastPage() {
+   public WizardPage currentPage() {
       int lastIdx = _path.size() - 1;
       return (lastIdx < 0) ? null : _path.get(lastIdx);
    }

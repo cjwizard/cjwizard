@@ -58,6 +58,11 @@ public class WizardContainer extends JPanel implements WizardController {
    private final List<WizardPage> _path = new LinkedList<WizardPage>();
    
    /**
+    * The path of already-visited pages starting from the current page.
+    */
+   private final List<WizardPage> _visitedPath = new LinkedList<WizardPage>();
+   
+   /**
     * List of listeners to update on wizard events.
     */
    private final List<WizardListener> _listeners =
@@ -190,8 +195,11 @@ public class WizardContainer extends JPanel implements WizardController {
    public void prev() {
       log.debug("prev. page");
       
-      _path.remove(_path.size() - 1);
-      // roll-back the settings:
+      // store visited pages
+      WizardPage removing = _path.remove(_path.size() - 1);
+      _visitedPath.add(0, removing);
+      // update roll-back the settings:
+      removing.updateSettings(getSettings());
       getSettings().rollBack();
       
       assert 1 <= _path.size() : "Invalid path size! "+_path.size();
@@ -213,46 +221,68 @@ public class WizardContainer extends JPanel implements WizardController {
    public void next() {
       log.debug("next page");
 
-      if (0 != _path.size()){
+      WizardPage lastPage = currentPage();
+      if (null != lastPage) {
          // get the settings from the page that is going away:
-         WizardPage lastPage = currentPage();
          getSettings().newPage(lastPage.getId());
          lastPage.updateSettings(getSettings());
       }
       
-      WizardPage newPage = _factory.createPage(getPath(), getSettings());
-      newPage.registerController(this);
+      ///TODO [dpd] this won't work with multiple paths
+      WizardPage nextPage = null;
+      if (_visitedPath.isEmpty()) {
+         nextPage = _factory.createPage(getPath(), getSettings());
+      } else {
+         nextPage = _visitedPath.remove(0);
+      }
+         
+      nextPage.registerController(this);
      
-      _path.add(newPage);
+      _path.add(nextPage);
       setPrevEnabled(_path.size() > 1);
       
       // tell the page that it is about to be rendered:
-      newPage.rendering(getPath(), getSettings());
-      _template.setPage(newPage);
+      nextPage.rendering(getPath(), getSettings());
+      _template.setPage(nextPage);
 
-      firePageChanged(newPage, getPath());
+      firePageChanged(nextPage, getPath());
    }
 
    public void visitPage(WizardPage page){
       int idx = _path.indexOf(page);
       
+      WizardPage lastPage = currentPage();
+      if (null != lastPage) {
+         // update the settings before leaving
+         lastPage.updateSettings(getSettings());
+      }
+      
       if (-1 == idx){
          // new page
-         if (0 != _path.size()){
+         if (null != lastPage) {
             // get the settings from the page that is going away:
-            WizardPage lastPage = _path.get(_path.size()-1);
             getSettings().newPage(lastPage.getId());
-            lastPage.updateSettings(getSettings());
          }
          
-         getPath().add(page);
+         // add back all visited pages
+         while (!_visitedPath.isEmpty()) {
+            WizardPage visited = _visitedPath.remove(0);
+            getPath().add(visited);
+            if (visited == page)
+               break;
+         }
+         // this shouldn't happen
+         if (currentPage() != page) {
+            getPath().add(page);
+         }
       } else {
          // page is in the path at idx.
          
          // first, roll back the settings and trim the path:
          for (int i=_path.size()-1; i > idx; i--){
             getSettings().rollBack();
-            _path.remove(i);
+            // save visited pages
+            _visitedPath.add(0, _path.remove(i));
          }
       }
       

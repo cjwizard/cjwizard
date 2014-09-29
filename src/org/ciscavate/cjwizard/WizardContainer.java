@@ -34,11 +34,11 @@ import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
 import org.ciscavate.utilities.ExceptionUtilities;
 
 /**
- * This is the primary "Wizard" class.  It must be instantiated with a
+ * This is the primary "Wizard" class. It must be instantiated with a
  * PageFactory and then treated as a JPanel.
  * 
  * @author rcreswick
- *
+ * 
  */
 public class WizardContainer extends JPanel implements WizardController {
 
@@ -46,7 +46,7 @@ public class WizardContainer extends JPanel implements WizardController {
     * Commons logging log instance
     */
    private static Log log = LogFactory.getLog(WizardContainer.class);
-   
+
    /**
     * Storage for all the collected information.
     */
@@ -56,17 +56,16 @@ public class WizardContainer extends JPanel implements WizardController {
     * The path from the start of the dialog to the current location.
     */
    private final List<WizardPage> _path = new LinkedList<WizardPage>();
-   
+
    /**
     * The path of already-visited pages starting from the current page.
     */
    private final List<WizardPage> _visitedPath = new LinkedList<WizardPage>();
-   
+
    /**
     * List of listeners to update on wizard events.
     */
-   private final List<WizardListener> _listeners =
-      new LinkedList<WizardListener>();
+   private final List<WizardListener> _listeners = new LinkedList<WizardListener>();
 
    /**
     * The template to surround the wizard pages of this dialog.
@@ -77,65 +76,67 @@ public class WizardContainer extends JPanel implements WizardController {
     * The factory that generates pages for this wizard.
     */
    private final PageFactory _factory;
-   
+
    /**
     * The panel containing any dynamically-added buttons.
     */
    private JPanel _extraButtonPanel;
-   
-   private final AbstractAction _prevAction = new AbstractAction("< Prev"){
+
+   private final AbstractAction _prevAction = new AbstractAction("< Prev") {
       {
          setEnabled(false);
       }
+
       @Override
       public void actionPerformed(ActionEvent e) {
          prev();
       }
    };
-   
-   private final AbstractAction _nextAction = new AbstractAction("Next >"){
+
+   private final AbstractAction _nextAction = new AbstractAction("Next >") {
       @Override
       public void actionPerformed(ActionEvent e) {
          next();
       }
    };
 
-   private final AbstractAction _finishAction = new AbstractAction("Finish"){
+   private final AbstractAction _finishAction = new AbstractAction("Finish") {
       {
          setEnabled(false);
       }
+
       @Override
       public void actionPerformed(ActionEvent e) {
          finish();
       }
    };
-   
-   private final AbstractAction _cancelAction = new AbstractAction("Cancel"){
+
+   private final AbstractAction _cancelAction = new AbstractAction("Cancel") {
       @Override
       public void actionPerformed(ActionEvent e) {
          cancel();
       }
    };
-   
+
    /**
     * Constructor, uses default PageTemplate and {@link StackWizardSettings}.
     */
-   public WizardContainer(PageFactory factory){
+   public WizardContainer(PageFactory factory) {
       this(factory, new DefaultPageTemplate(), new StackWizardSettings());
    }
-   
+
    /**
     * Constructor.
     */
    public WizardContainer(PageFactory factory, PageTemplate template,
-                          WizardSettings settings){
+         WizardSettings settings) {
       _factory = factory;
       _template = template;
       _settings = settings;
-     
+
       initComponents();
       _template.registerController(this);
-      
+
       // get the first page:
       next();
    }
@@ -148,11 +149,11 @@ public class WizardContainer extends JPanel implements WizardController {
       final JButton nextBtn = new JButton(_nextAction);
       final JButton finishBtn = new JButton(_finishAction);
       final JButton cancelBtn = new JButton(_cancelAction);
-      
+
       _extraButtonPanel = new JPanel();
-      _extraButtonPanel.setLayout(
-            new BoxLayout(_extraButtonPanel, BoxLayout.LINE_AXIS));
-      
+      _extraButtonPanel.setLayout(new BoxLayout(_extraButtonPanel,
+            BoxLayout.LINE_AXIS));
+
       final JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
       buttonPanel.add(_extraButtonPanel);
@@ -164,14 +165,14 @@ public class WizardContainer extends JPanel implements WizardController {
       buttonPanel.add(finishBtn);
       buttonPanel.add(Box.createHorizontalStrut(10));
       buttonPanel.add(cancelBtn);
-      
+
       buttonPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
       this.setLayout(new BorderLayout());
-      
+
       this.add(_template, BorderLayout.CENTER);
       this.add(buttonPanel, BorderLayout.SOUTH);
    }
-   
+
    /**
     * Add additional buttons to the wizard controls. Any previously-added
     * buttons are cleared on each call to this method.
@@ -179,34 +180,32 @@ public class WizardContainer extends JPanel implements WizardController {
     * @param buttons
     *           The buttons to add to the wizard controls.
     */
-   public void setButtons(JButton... buttons)
-   {
+   public void setButtons(JButton... buttons) {
       _extraButtonPanel.removeAll();
-      for (JButton button : buttons)
-      {
+      for (JButton button : buttons) {
          _extraButtonPanel.add(button);
          _extraButtonPanel.add(Box.createHorizontalStrut(10));
       }
    }
-   
+
    /**
     * The PageFactory is not queried for pages when moving *backwards*.
     */
    public void prev() {
       log.debug("prev. page");
-      
+
       // store visited pages
       WizardPage removing = _path.remove(_path.size() - 1);
       _visitedPath.add(0, removing);
       // update roll-back the settings:
       removing.updateSettings(getSettings());
       getSettings().rollBack();
-      
-      assert 1 <= _path.size() : "Invalid path size! "+_path.size();
+
+      assert 1 <= _path.size() : "Invalid path size! " + _path.size();
       setPrevEnabled(_path.size() > 1);
-      
-      WizardPage curPage =  _path.get(_path.size() - 1);
-      
+
+      WizardPage curPage = _path.get(_path.size() - 1);
+
       setNextEnabled(true);
       // tell the page that it is about to be rendered:
       curPage.rendering(getPath(), getSettings());
@@ -214,7 +213,7 @@ public class WizardContainer extends JPanel implements WizardController {
 
       firePageChanged(curPage, getPath());
    }
-   
+
    /**
     * 
     */
@@ -227,20 +226,23 @@ public class WizardContainer extends JPanel implements WizardController {
          getSettings().newPage(lastPage.getId());
          lastPage.updateSettings(getSettings());
       }
-      
-      ///TODO [dpd] this won't work with multiple paths
+
+      // Get the next page
       WizardPage nextPage = null;
-      if (_visitedPath.isEmpty()) {
+      if (_visitedPath.isEmpty()
+            || _factory.mustCreatePage(getPath(), getSettings())) {
+         // If we can't use the cached page, create a new one.
          nextPage = _factory.createPage(getPath(), getSettings());
       } else {
+         // Else use the previously cached page.
          nextPage = _visitedPath.remove(0);
       }
-         
+
       nextPage.registerController(this);
-     
+
       _path.add(nextPage);
       setPrevEnabled(_path.size() > 1);
-      
+
       // tell the page that it is about to be rendered:
       nextPage.rendering(getPath(), getSettings());
       _template.setPage(nextPage);
@@ -248,22 +250,22 @@ public class WizardContainer extends JPanel implements WizardController {
       firePageChanged(nextPage, getPath());
    }
 
-   public void visitPage(WizardPage page){
+   public void visitPage(WizardPage page) {
       int idx = _path.indexOf(page);
-      
+
       WizardPage lastPage = currentPage();
       if (null != lastPage) {
          // update the settings before leaving
          lastPage.updateSettings(getSettings());
       }
-      
-      if (-1 == idx){
+
+      if (-1 == idx) {
          // new page
          if (null != lastPage) {
             // get the settings from the page that is going away:
             getSettings().newPage(lastPage.getId());
          }
-         
+
          // add back all visited pages
          while (!_visitedPath.isEmpty()) {
             WizardPage visited = _visitedPath.remove(0);
@@ -277,15 +279,15 @@ public class WizardContainer extends JPanel implements WizardController {
          }
       } else {
          // page is in the path at idx.
-         
+
          // first, roll back the settings and trim the path:
-         for (int i=_path.size()-1; i > idx; i--){
+         for (int i = _path.size() - 1; i > idx; i--) {
             getSettings().rollBack();
             // save visited pages
             _visitedPath.add(0, _path.remove(i));
          }
       }
-      
+
       setPrevEnabled(_path.size() > 1);
 
       setNextEnabled(true);
@@ -293,7 +295,7 @@ public class WizardContainer extends JPanel implements WizardController {
       _template.setPage(page);
       firePageChanged(page, _path);
    }
-   
+
    /**
     * @param nextPage
     * @param path
@@ -309,69 +311,80 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    public void finish() {
       log.debug("finish");
-      
+
       for (WizardListener l : _listeners) {
          l.onFinished(getPath(), getSettings());
       }
    }
-   
+
    /**
     * 
     */
    public void cancel() {
       log.debug("cancel");
-      
+
       for (WizardListener l : _listeners) {
          l.onCanceled(getPath(), getSettings());
       }
    }
-   
-   /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardController#addWizardListener(com.stottlerhenke.presentwell.wizard.WizardListener)
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see
+    * org.ciscavate.cjwizard.WizardController#addWizardListener(com.stottlerhenke
+    * .presentwell.wizard.WizardListener)
     */
-   public void addWizardListener(WizardListener listener){
+   public void addWizardListener(WizardListener listener) {
       ExceptionUtilities.checkNull(listener, "listener");
-      if (!_listeners.contains(listener)){
+      if (!_listeners.contains(listener)) {
          _listeners.add(listener);
-         WizardPage curPage = _path.get(_path.size()-1);
+         WizardPage curPage = _path.get(_path.size() - 1);
          listener.onPageChanged(curPage, getPath());
       }
    }
-   
-   /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardController#removeWizardListener(com.stottlerhenke.presentwell.wizard.WizardListener)
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see
+    * org.ciscavate.cjwizard.WizardController#removeWizardListener(com.stottlerhenke
+    * .presentwell.wizard.WizardListener)
     */
-   public void removeWizardListener(WizardListener listener){
+   public void removeWizardListener(WizardListener listener) {
       ExceptionUtilities.checkNull(listener, "listener");
       _listeners.remove(listener);
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.ciscavate.cjwizard.WizardController#getSettings()
     */
-   public WizardSettings getSettings(){
+   public WizardSettings getSettings() {
       return _settings;
    }
-   
+
    /**
     * Set/load the specified settings map nad re-render the current page.
     * 
     * @param settings
     *           The settings to load.
     */
-   public void setSettings(WizardSettings settings)
-   {
+   public void setSettings(WizardSettings settings) {
       _settings = settings;
       currentPage().rendering(_path, _settings);
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.ciscavate.cjwizard.WizardController#getPath()
     */
    public List<WizardPage> getPath() {
       return _path;
    }
-   
+
    /**
     * @return The last (current) page of the current {@link #_path} or null if
     *         the path is empty.
@@ -381,21 +394,27 @@ public class WizardContainer extends JPanel implements WizardController {
       return (lastIdx < 0) ? null : _path.get(lastIdx);
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.ciscavate.cjwizard.WizardController#setNextEnabled(boolean)
     */
    public void setNextEnabled(boolean enabled) {
       _nextAction.setEnabled(enabled);
    }
-   
-   /* (non-Javadoc)
+
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.ciscavate.cjwizard.WizardController#setPrevEnabled(boolean)
     */
    public void setPrevEnabled(boolean enabled) {
       _prevAction.setEnabled(enabled);
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see org.ciscavate.cjwizard.WizardController#setFinishEnabled(boolean)
     */
    public void setFinishEnabled(boolean enabled) {

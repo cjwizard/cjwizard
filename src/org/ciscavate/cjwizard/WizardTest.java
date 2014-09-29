@@ -183,5 +183,11 @@ public class WizardTest extends JDialog {
          return page;
       }
       
+      @Override
+      public boolean mustCreatePage(List<WizardPage> path, WizardSettings settings) {
+         // All pages can be cached.
+         return false;
+      }
+      
    }
 }

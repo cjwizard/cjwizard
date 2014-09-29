@@ -26,36 +26,45 @@ import java.util.Stack;
  * @author rcreswick
  */
 public class StackWizardSettings implements WizardSettings {
-   
-   private final Stack<IdMapTuple> _pageStack =
-      new Stack<IdMapTuple>();
 
-   private final Map<String, IdMapTuple> _oldPageMaps =
-      new HashMap<String, IdMapTuple>();
-   
-   public StackWizardSettings(){
+   private final Stack<IdMapTuple> _pageStack = new Stack<IdMapTuple>();
+
+   private final Map<String, IdMapTuple> _oldPageMaps = new HashMap<String, IdMapTuple>();
+
+   /**
+    * Create a new empty instance of the wizard settings.
+    */
+   public StackWizardSettings() {
       // start with an empty new page:
       newPage("");
    }
-   
+
    /**
     * Gets the set of keys on this WizardSettings object.
     * 
     * @return A set of all the keys currently active.
     */
-   public Set<String> keySet(){
+   public Set<String> keySet() {
       Set<String> keys = new HashSet<String>();
-      
-      for (IdMapTuple tuple : _pageStack){
+
+      for (IdMapTuple tuple : _pageStack) {
          keys.addAll(tuple.map.keySet());
       }
       return keys;
    }
-   
-   public boolean containsKey(String key){
+
+   /**
+    * Check if the specified was added.
+    * 
+    * @param key
+    *           The key that must be checked.
+    * @return <code>true</code> if this settings contains the specified key or
+    *         <code>false</code> in other case.
+    */
+   public boolean containsKey(String key) {
       return keySet().contains(key);
    }
-      
+
    /**
     * 
     */
@@ -64,23 +73,26 @@ public class StackWizardSettings implements WizardSettings {
    }
 
    /**
+    * Create a new page of settings.
+    * 
     * @param id
+    *           The id for the page.
     */
    public void newPage(String id) {
-      if (0 != _pageStack.size()){
+      if (0 != _pageStack.size()) {
          // if there was a previous map, then
          // store the previous page map by id:
          _oldPageMaps.put(current().id, current());
       }
-      
+
       // If we've seen this ID before, use it again:
       IdMapTuple curTuple;
-      if (_oldPageMaps.containsKey(id)){
+      if (_oldPageMaps.containsKey(id)) {
          curTuple = _oldPageMaps.get(id);
-      }else{
+      } else {
          curTuple = new IdMapTuple(id, new HashMap<String, Object>());
       }
-      
+
       // push the new map:
       _pageStack.push(curTuple);
    }
@@ -88,51 +100,56 @@ public class StackWizardSettings implements WizardSettings {
    public Object put(String key, Object value) {
       return current().map.put(key, value);
    }
-   
+
    /**
     * Gets the value associated with the key.
     * 
     * @param key
-    * @return
+    *           The key of the setting.
+    * @return The value of the setting or null if not found.
     */
-   public Object get(String key){
+   public Object get(String key) {
       Object value = null;
-      
-      for (int i=_pageStack.size()-1; null == value && i >= 0; i--){
+
+      for (int i = _pageStack.size() - 1; null == value && i >= 0; i--) {
          IdMapTuple tuple = _pageStack.get(i);
          value = tuple.map.get(key);
       }
       return value;
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see java.util.Map#get(java.lang.Object)
     */
    @Override
    public Object get(Object key) {
       if (key instanceof String) {
-         return get((String)key);
+         return get((String) key);
       }
       return null;
    }
-   
-   private IdMapTuple current(){
+
+   private IdMapTuple current() {
       if (0 == _pageStack.size())
          return null;
-      
+
       return _pageStack.peek();
    }
 
-   public String toString(){
+   public String toString() {
       StringBuilder str = new StringBuilder("WizardSettings: ");
-      
-      for (String key : keySet()){
-         str.append("["+key+"="+get(key)+"] ");
+
+      for (String key : keySet()) {
+         str.append("[" + key + "=" + get(key) + "] ");
       }
       return str.toString();
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see java.util.Map#clear()
     */
    @Override
@@ -143,7 +160,9 @@ public class StackWizardSettings implements WizardSettings {
       newPage("");
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see java.util.Map#containsKey(java.lang.Object)
     */
    @Override
@@ -152,14 +171,16 @@ public class StackWizardSettings implements WizardSettings {
       return keySet().contains(key);
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see java.util.Map#containsValue(java.lang.Object)
     */
    @Override
    public boolean containsValue(Object value) {
       boolean containsVal = false;
-      
-      for (int i=_pageStack.size()-1; !containsVal && i >= 0; i--){
+
+      for (int i = _pageStack.size() - 1; !containsVal && i >= 0; i--) {
          IdMapTuple tuple = _pageStack.get(i);
          containsVal = tuple.map.containsValue(value);
       }
@@ -175,7 +196,9 @@ public class StackWizardSettings implements WizardSettings {
       throw new UnsupportedOperationException();
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see java.util.Map#isEmpty()
     */
    @Override
@@ -183,14 +206,14 @@ public class StackWizardSettings implements WizardSettings {
       return keySet().size() == 0;
    }
 
-
-   /**
-    * Not supported.
+   /*
+    * (non-Javadoc)
+    * 
+    * @see java.util.Map#putAll(java.util.Map)
     */
    @Override
    public void putAll(Map<? extends String, ? extends Object> m) {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException();
+      current().map.putAll(m);
    }
 
    /**
@@ -202,7 +225,9 @@ public class StackWizardSettings implements WizardSettings {
       throw new UnsupportedOperationException();
    }
 
-   /* (non-Javadoc)
+   /*
+    * (non-Javadoc)
+    * 
     * @see java.util.Map#size()
     */
    @Override
@@ -219,13 +244,54 @@ public class StackWizardSettings implements WizardSettings {
       throw new UnsupportedOperationException();
    }
 
-   private class IdMapTuple{
+   private class IdMapTuple {
       public final String id;
       public final Map<String, Object> map;
-      
+
       public IdMapTuple(String id, Map<String, Object> map) {
          this.id = id;
          this.map = map;
+      }
+   }
+
+   /**
+    * Compare if this active {@link WizardSettings} are equal to other
+    * {@link WizardSettings}.
+    * 
+    * @param ws
+    *           The other settings to compare with.
+    * 
+    * @return <code>true</code> If active keys are the same in both settings and
+    *         its values are also equals.
+    * @author Javier Alfonso <PhoneixSegovia@gmail.com>
+    */
+   public boolean settingsEquals(WizardSettings ws) {
+
+      if (ws == this) {
+         return true;
+      }
+
+      Set<String> otherKeys = ws.keySet();
+      Set<String> thisKeys = this.keySet();
+
+      if (otherKeys.equals(thisKeys)) {
+
+         for (String key : thisKeys) {
+
+            if (!this.get(key).equals(ws.get(key))) {
+
+               return false;
+
+            }
+
+         }
+
+         return true;
+
+      } else {
+
+         return false;
+
       }
    }
 }

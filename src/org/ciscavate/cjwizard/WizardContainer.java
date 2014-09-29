@@ -230,7 +230,7 @@ public class WizardContainer extends JPanel implements WizardController {
       // Get the next page
       WizardPage nextPage = null;
       if (_visitedPath.isEmpty()
-            || _factory.mustCreatePage(getPath(), getSettings())) {
+            || _factory.isTransient(getPath(), getSettings())) {
          // If we can't use the cached page, create a new one.
          nextPage = _factory.createPage(getPath(), getSettings());
       } else {

@@ -18,8 +18,12 @@ package org.ciscavate.cjwizard;
 import java.util.List;
 
 /**
- * @author rcreswick
  * 
+ * This inteface must be implemented by classes that provide pages for the
+ * Wizard.
+ * 
+ * @author rcreswick
+ * @version 20140929
  */
 public interface PageFactory {
 
@@ -45,7 +49,8 @@ public interface PageFactory {
     *           The Map of settings collected.
     * @return <code>true</code> if is needed to call to createPage to obtain the
     *         next page, <code>false</code> in other case.
+    * @since 20140929
     */
-   public boolean mustCreatePage(List<WizardPage> path, WizardSettings settings);
+   public boolean isTransient(List<WizardPage> path, WizardSettings settings);
 
 }

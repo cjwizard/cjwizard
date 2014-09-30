@@ -93,7 +93,7 @@ public class WizardTest2 extends JDialog {
     * Implementation of PageFactory to generate the wizard pages needed
     * for the wizard.
     */
-   private class TestFactory implements PageFactory{
+   private class TestFactory extends APageFactory{
       
       /* (non-Javadoc)
        * @see org.ciscavate.cjwizard.PageFactory#createPage(java.util.List, org.ciscavate.cjwizard.WizardSettings)
@@ -168,6 +168,5 @@ public class WizardTest2 extends JDialog {
 			  }
 			  return null;
 		 }
-      
    }
 }

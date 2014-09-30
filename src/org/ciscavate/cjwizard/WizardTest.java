@@ -93,7 +93,7 @@ public class WizardTest extends JDialog {
     * Implementation of PageFactory to generate the wizard pages needed
     * for the wizard.
     */
-   private class TestFactory implements PageFactory{
+   private class TestFactory extends APageFactory{
       
       // To keep things simple, we'll just create an array of wizard pages:
       private final WizardPage[] pages = {

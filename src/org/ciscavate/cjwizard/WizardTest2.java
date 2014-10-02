@@ -15,13 +15,12 @@
  */
 package org.ciscavate.cjwizard;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
 
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.apache.commons.logging.Log;
@@ -31,6 +30,12 @@ import org.ciscavate.cjwizard.pagetemplates.TitledPageTemplate;
 /**
  * This demo class uses a JDialog to hold the wizard.
  * 
+ * It show three pages: 1) You can enter a city name. 2) You must enter another
+ * city that must be different to the first city. 3) It shows the last city
+ * entered.
+ * 
+ * The city is name is saved in the settings with the same key so when you enter
+ * a city name in the second page, you overwrite it.
  * 
  * @author rcreswick
  *
@@ -136,18 +141,8 @@ public class WizardTest2 extends JDialog {
 						 }
 					};
 			  case 1:
-					return new WizardPage("Two", "Second Page"){
-						 {
-							  // get a value out of the settings, and display it on the second page:
-							  add(new JLabel("The city you entered was: "+settings.get("city")));
-							  
-							  JTextField field = new JTextField();
-							  field.setName("city");
-							  field.setPreferredSize(new Dimension(50, 20));
-							  add(new JLabel("Enter a different city:"));
-							  add(field);
-						 }
-					};
+			     // You don't need to use anonymous classes.
+					return new ValidationPage(settings);
 			  case 2:
 					return new WizardPage("Three", "Third Page"){
 						 {
@@ -168,5 +163,73 @@ public class WizardTest2 extends JDialog {
 			  }
 			  return null;
 		 }
+
+      /**
+       * This private class implement a WizardPage that show the previous city
+       * and also validate that the user enter a new city that is different
+       * before going to the next page.
+       * 
+       */
+      private class ValidationPage extends WizardPage {
+
+         private JTextField field;
+
+         /**
+          * Create a new ValidationPage that shows the previous city name and
+          * force you to enter a different city name.
+          * 
+          * @param settings THe current settings to get the previous city name.
+          */
+         public ValidationPage(WizardSettings settings) {
+            // We set the title and the description of the page.
+            super("Two", "Second Page");
+
+            // get a value out of the settings, and display it on the second
+            // page:
+            add(new JLabel("The city you entered was: " + settings.get("city")));
+
+            field = new JTextField();
+            field.setName("city");
+            field.setPreferredSize(new Dimension(50, 20));
+            add(new JLabel("Enter a different city:"));
+            add(field);
+         }
+
+         /**
+          * Check if the previous city name is the same of the current page.
+          * 
+          * Also, if the cities are the same it show a dialog telling it.
+          * 
+          * @see org.ciscavate.cjwizard.WizardPage#onNext(org.ciscavate.cjwizard.WizardSettings)
+          * 
+          * @return true if they are different (so the page can change) or false
+          * if they are different (so the wizard don't advance to next page).
+          * 
+          */
+         @Override
+         public boolean onNext(WizardSettings settings) {
+
+            // Check if the current city is equal to the previous.
+            if (settings.get("city").equals(this.field.getText())) {
+
+               // Show a message (but do it in with the gui thread.
+               java.awt.EventQueue.invokeLater(new Runnable() {
+                  public void run() {
+                     JOptionPane.showMessageDialog(ValidationPage.this,
+                           "You have specified the same city than before!",
+                           "Same city!", JOptionPane.ERROR_MESSAGE);
+                  }
+               });
+
+               return false;
+
+            } else {
+
+               return true;
+
+            }
+         }
+
+      }
    }
 }

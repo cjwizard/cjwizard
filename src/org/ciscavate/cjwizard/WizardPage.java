@@ -332,29 +332,35 @@ public abstract class WizardPage extends JPanel {
     * Descendants can overload this function to do checks on its fields and then
     * warn user on incorrect fields.
     * 
+    * @param settings
+    *           The current settings without update the current page settings.
+    * 
     * @return If fields are valid (<code>true</code>) or not. If
-    *          <code>false</code> is returned the page change will be cancelled.
-    *          <code>true</code> by default.
+    *         <code>false</code> is returned the page change will be cancelled.
+    *         <code>true</code> by default.
     * @since 20141002
     */
-   public boolean onNext() {
+   public boolean onNext(WizardSettings settings) {
 
       return true;
 
    }
-   
+
    /**
     * Will be called before moving back.
     * 
     * Descendants can overload this function to do checks on its fields and then
     * warn user on incorrect fields or lost data.
     * 
+    * @param settings
+    *           The current settings without update the current page settings.
+    * 
     * @return If fields are valid (<code>true</code>) or not. If
     *          <code>false</code> is returned the page change will be cancelled.
     *          <code>true</code> by default.
     * @since 20141002
     */
-   public boolean onPrev() {
+   public boolean onPrev(WizardSettings settings) {
 
       return true;
 

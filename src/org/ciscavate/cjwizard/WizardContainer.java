@@ -197,7 +197,7 @@ public class WizardContainer extends JPanel implements WizardController {
       // store visited pages
       WizardPage removing = _path.remove(_path.size() - 1);
 
-      if (!removing.onPrev()) {
+      if (!removing.onPrev(getSettings())) {
          return;
       }
 
@@ -228,7 +228,7 @@ public class WizardContainer extends JPanel implements WizardController {
       WizardPage lastPage = currentPage();
       if (null != lastPage) {
 
-         if (!lastPage.onNext()) {
+         if (!lastPage.onNext(getSettings())) {
             return;
          }
 
@@ -327,7 +327,7 @@ public class WizardContainer extends JPanel implements WizardController {
 
       if (null != lastPage) {
 
-         if (!lastPage.onNext()) {
+         if (!lastPage.onNext(getSettings())) {
             return;
          }
 

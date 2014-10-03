@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -46,6 +47,16 @@ public class WizardContainer extends JPanel implements WizardController {
     * Commons logging log instance
     */
    private static Log log = LogFactory.getLog(WizardContainer.class);
+
+   /**
+    * Resource to translate GUI elements.
+    */
+   private static ResourceBundle msg = ResourceBundle.getBundle("org.ciscavate.cjwizard.i18n.cjwizard");
+
+   private static final String I18N_NEXT = "NEXT";
+   private static final String I18N_PREVIOUS = "PREVIOUS";
+   private static final String I18N_FINISH = "FINISH";
+   private static final String I18N_CANCEL = "CANCEL";
 
    /**
     * Storage for all the collected information.
@@ -82,7 +93,10 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    private JPanel _extraButtonPanel;
 
-   private final AbstractAction _prevAction = new AbstractAction("< Prev") {
+   private final AbstractAction _prevAction = new AbstractAction(msg.getString(I18N_PREVIOUS)) {
+
+      private static final long serialVersionUID = -3544187996163884815L;
+
       {
          setEnabled(false);
       }
@@ -93,14 +107,20 @@ public class WizardContainer extends JPanel implements WizardController {
       }
    };
 
-   private final AbstractAction _nextAction = new AbstractAction("Next >") {
+   private final AbstractAction _nextAction = new AbstractAction(msg.getString(I18N_NEXT)) {
+
+      private static final long serialVersionUID = 4175292094891534750L;
+
       @Override
       public void actionPerformed(ActionEvent e) {
          next();
       }
    };
 
-   private final AbstractAction _finishAction = new AbstractAction("Finish") {
+   private final AbstractAction _finishAction = new AbstractAction(msg.getString(I18N_FINISH)) {
+
+      private static final long serialVersionUID = -1556582296948163049L;
+
       {
          setEnabled(false);
       }
@@ -111,7 +131,10 @@ public class WizardContainer extends JPanel implements WizardController {
       }
    };
 
-   private final AbstractAction _cancelAction = new AbstractAction("Cancel") {
+   private final AbstractAction _cancelAction = new AbstractAction(msg.getString(I18N_CANCEL)) {
+
+      private static final long serialVersionUID = 2757580981402133120L;
+
       @Override
       public void actionPerformed(ActionEvent e) {
          cancel();
@@ -120,13 +143,18 @@ public class WizardContainer extends JPanel implements WizardController {
 
    /**
     * Constructor, uses default PageTemplate and {@link StackWizardSettings}.
+    * 
+    * @param factory The factory that will create the pages.
     */
    public WizardContainer(PageFactory factory) {
       this(factory, new DefaultPageTemplate(), new StackWizardSettings());
    }
 
    /**
-    * Constructor.
+    * Customized constructor.
+    * @param factory The factory which will be used to create the pages.
+    * @param template Template to put inside the pages.
+    * @param settings The settings to store the values put by the user.
     */
    public WizardContainer(PageFactory factory, PageTemplate template,
          WizardSettings settings) {

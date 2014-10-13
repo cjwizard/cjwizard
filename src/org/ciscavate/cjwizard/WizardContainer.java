@@ -196,6 +196,11 @@ public class WizardContainer extends JPanel implements WizardController {
 
       // store visited pages
       WizardPage removing = _path.remove(_path.size() - 1);
+
+      if (!removing.onPrev(getSettings())) {
+         return;
+      }
+
       _visitedPath.add(0, removing);
       // update roll-back the settings:
       removing.updateSettings(getSettings());
@@ -215,16 +220,22 @@ public class WizardContainer extends JPanel implements WizardController {
    }
 
    /**
-    * 
+    * Called when the page must advance to the next page.
     */
    public void next() {
       log.debug("next page");
 
       WizardPage lastPage = currentPage();
       if (null != lastPage) {
+
+         if (!lastPage.onNext(getSettings())) {
+            return;
+         }
+
          // get the settings from the page that is going away:
          getSettings().newPage(lastPage.getId());
          lastPage.updateSettings(getSettings());
+
       }
 
       // Get the next page
@@ -311,6 +322,21 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    public void finish() {
       log.debug("finish");
+
+      WizardPage lastPage = currentPage();
+
+      if (null != lastPage) {
+
+         if (!lastPage.onNext(getSettings())) {
+            return;
+         }
+
+         // get the settings from the page that is going away:
+         getSettings().newPage(lastPage.getId());
+         // And update the settings.
+         lastPage.updateSettings(getSettings());
+
+      }
 
       for (WizardListener l : _listeners) {
          l.onFinished(getPath(), getSettings());

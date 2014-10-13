@@ -34,8 +34,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * 
+ * This class is the basic implementation of a WizardPage.
+ * 
  * @author rcreswick
- *
+ * @version 20140210
  */
 public abstract class WizardPage extends JPanel {
 
@@ -323,4 +326,43 @@ public abstract class WizardPage extends JPanel {
       }
    }
 
+   /**
+    * Will be called before moving on next page or finishing.
+    * 
+    * Descendants can overload this function to do checks on its fields and then
+    * warn user on incorrect fields.
+    * 
+    * @param settings
+    *           The current settings without update the current page settings.
+    * 
+    * @return If fields are valid (<code>true</code>) or not. If
+    *         <code>false</code> is returned the page change will be cancelled.
+    *         <code>true</code> by default.
+    * @since 20141002
+    */
+   public boolean onNext(WizardSettings settings) {
+
+      return true;
+
+   }
+
+   /**
+    * Will be called before moving back.
+    * 
+    * Descendants can overload this function to do checks on its fields and then
+    * warn user on incorrect fields or lost data.
+    * 
+    * @param settings
+    *           The current settings without update the current page settings.
+    * 
+    * @return If fields are valid (<code>true</code>) or not. If
+    *          <code>false</code> is returned the page change will be cancelled.
+    *          <code>true</code> by default.
+    * @since 20141002
+    */
+   public boolean onPrev(WizardSettings settings) {
+
+      return true;
+
+   }
 }

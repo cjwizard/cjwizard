@@ -85,7 +85,8 @@ public class TitledPageTemplate extends PageTemplate {
             _innerTemplate.setPage(page);
             
             // Set the new title text:
-            _title.setText(page.getDescription());
+            _title.setText(page.getTitle());
+            _title.setToolTipText(page.getDescription());
          }
       });
    }

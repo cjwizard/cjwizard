@@ -26,8 +26,9 @@ import javax.swing.border.Border;
 import org.ciscavate.cjwizard.WizardPage;
 
 /**
- * Simple PageTemplate that lists the WizardPage description at the top
- * of each page in the wizard.
+ * Simple PageTemplate that lists the WizardPage title at the top of each page
+ * in the wizard and also use the description of the page as tool tip of the
+ * title.
  * 
  * @author rogue
  */

@@ -240,6 +240,7 @@ public class WizardContainer extends JPanel implements WizardController {
       WizardPage curPage = _path.get(_path.size() - 1);
 
       setNextEnabled(true);
+      setFinishEnabled(false);
       // tell the page that it is about to be rendered:
       curPage.rendering(getPath(), getSettings());
       _template.setPage(curPage);

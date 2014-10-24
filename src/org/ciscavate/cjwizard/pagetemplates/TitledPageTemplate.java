@@ -26,8 +26,9 @@ import javax.swing.border.Border;
 import org.ciscavate.cjwizard.WizardPage;
 
 /**
- * Simple PageTemplate that lists the WizardPage description at the top
- * of each page in the wizard.
+ * Simple PageTemplate that lists the WizardPage title at the top of each page
+ * in the wizard and also use the description of the page as tool tip of the
+ * title.
  * 
  * @author rogue
  */
@@ -85,7 +86,8 @@ public class TitledPageTemplate extends PageTemplate {
             _innerTemplate.setPage(page);
             
             // Set the new title text:
-            _title.setText(page.getDescription());
+            _title.setText(page.getTitle());
+            _title.setToolTipText(page.getDescription());
          }
       });
    }

@@ -24,3 +24,19 @@ etc..), or using github dosen't work for you for any reason, feel free
 to contact Rogan (creswick at gmail) and we will find a way to include
 your work.
 
+## How to translate the buttons? ##
+
+Cjwizard used ResourceBundle to retrieve its locale-specific resources.
+So if you want to translate the buttons, you only need to do this simple
+steps:
+
+1. Copy `src/org/ciscavate/cjwizard/i18n/cjwizard.properties` and rename
+it like `cjwizard_XX.properties` where `XX` is your language code. For example
+for Spnaish it will be `cjwizard_es.properties`.
+2. Open it with a simple text editor like Notepad or Gedit.
+3. Translate the text in the right side of `=` to your language.
+4. Save the file.
+5. You are done.
+
+If you have translated the resources, we will be pleased to add them to cjwizard
+if you tell us to do so.

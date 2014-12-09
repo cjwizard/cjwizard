@@ -26,11 +26,22 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * This settings can save pairs of key and values in a plain {@link HashMap}.
+ * 
+ * Note that this class doesn't implement the transaction model, and
+ * so {@link #newPage(String)}, {@link #rollBack()} and {@link #commit()}
+ * methods don't do anything.
+ * 
  * @author ddearing
  */
 public class FlatWizardSettings extends HashMap<String, Object>
 implements WizardSettings
 {
+   /**
+    * Serial version number, remember to change it when the class isn't binary
+    * compatible with older versions.
+    */
+   private static final long serialVersionUID = 20141205L;
    
    /**
     * Commons logging log instance
@@ -51,6 +62,16 @@ implements WizardSettings
     */
    @Override
    public void rollBack()
+   {
+      // no-op
+   }
+   
+   /*
+    * (non-Javadoc)
+    * @see org.ciscavate.cjwizard.WizardSettings#commit()
+    */
+   @Override
+   public void commit()
    {
       // no-op
    }

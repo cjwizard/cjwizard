@@ -18,18 +18,35 @@ package org.ciscavate.cjwizard;
 import java.util.Map;
 
 /**
+ * This interface declare the minimum methods that all wizard settings classes
+ * must implement.
+ * 
  * @author ddearing
+ * 
+ * @version 20141205
+ * 
  */
 public interface WizardSettings extends Map<String, Object> {
-   
+
    /**
-    * 
+    * Rolls back the current page, removing it from the settings.
     */
    void rollBack();
 
    /**
-    * @param id
+    * Create a new page of settings with the specified identifier.
+    * 
+    * @param id The identifier of the new page.
     */
    void newPage(String id);
-   
+
+   /**
+    * Confirm the current page so it isn't lost when you do a rollBack.
+    * 
+    * @see #rollBack()
+    * 
+    * @since 20141205
+    */
+   public void commit();
+
 }

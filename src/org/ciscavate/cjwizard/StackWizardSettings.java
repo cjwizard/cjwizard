@@ -18,12 +18,20 @@ package org.ciscavate.cjwizard;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
 /**
+ * This class implement a {@link WizardSettings} that store its pages in a stack
+ * and in a cache so you can commit the current page and it will be used when a
+ * new page with the same id is restored.
+ * 
  * @author rcreswick
+ * 
+ * @version 20141205
+ * 
  */
 public class StackWizardSettings implements WizardSettings {
 
@@ -73,17 +81,33 @@ public class StackWizardSettings implements WizardSettings {
    }
 
    /**
-    * Create a new page of settings.
+    * Confirm the current page so it isn't lost when you do a rollBack.
+    * 
+    * @see StackWizardSettings#rollBack()
+    * 
+    * @since 20141205
+    */
+   public void commit() {
+
+      IdMapTuple currentPage = current();
+
+      // If there was a page, store it by its id.
+      if (currentPage != null) {
+         _oldPageMaps.put(currentPage.id, currentPage);
+      }
+
+   }
+
+   /**
+    * Create a new page of settings, committing the current page.
     * 
     * @param id
     *           The id for the page.
     */
    public void newPage(String id) {
-      if (0 != _pageStack.size()) {
-         // if there was a previous map, then
-         // store the previous page map by id:
-         _oldPageMaps.put(current().id, current());
-      }
+
+      // First, save the current page
+      commit();
 
       // If we've seen this ID before, use it again:
       IdMapTuple curTuple;
@@ -97,6 +121,10 @@ public class StackWizardSettings implements WizardSettings {
       _pageStack.push(curTuple);
    }
 
+   /*
+    * (non-Javadoc)
+    * @see java.util.Map#put(java.lang.Object, java.lang.Object)
+    */
    public Object put(String key, Object value) {
       return current().map.put(key, value);
    }
@@ -131,6 +159,12 @@ public class StackWizardSettings implements WizardSettings {
       return null;
    }
 
+   /**
+    * Gets the current page in the stack (without removing it).
+    * 
+    * @return The current page in the stack or null if no page have been
+    * created yet.
+    */
    private IdMapTuple current() {
       if (0 == _pageStack.size())
          return null;
@@ -138,6 +172,10 @@ public class StackWizardSettings implements WizardSettings {
       return _pageStack.peek();
    }
 
+   /*
+    * (non-Javadoc)
+    * @see java.lang.Object#toString()
+    */
    public String toString() {
       StringBuilder str = new StringBuilder("WizardSettings: ");
 
@@ -167,8 +205,16 @@ public class StackWizardSettings implements WizardSettings {
     */
    @Override
    public boolean containsKey(Object key) {
-      // TODO this is innefficient.
-      return keySet().contains(key);
+
+      Iterator<IdMapTuple> iter = this._pageStack.iterator();
+      boolean found = false;
+
+      while (iter.hasNext() && !found) {
+         found = iter.next().map.containsKey(key);
+      }
+
+      return found;
+
    }
 
    /*
@@ -217,12 +263,43 @@ public class StackWizardSettings implements WizardSettings {
    }
 
    /**
-    * Not supported.
+    * Removes the mapping for a key from the current page if it is present.
+    * 
+    * Note that this don't remove the key in all pages, only in the current one,
+    * so this settings can still contains the key in previous pages. This break
+    * the {@link Map#remove(Object)} method definition.
+    * 
+    * Also note that it can also return null if the key exist and its value is
+    * null.
+    * 
+    * @return The associated value to the key which is removed or null if the
+    * current page don't contains it.
+    * 
+    * @see #removeAll(Object)
+    * 
     */
    @Override
    public Object remove(Object key) {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException();
+
+      return current().map.remove(key);
+
+   }
+
+   /**
+    * Remove the key (and its associated values) in all the pages of the stack.
+    * 
+    * Note that this doesn't remove the key from committed pages.
+    * 
+    * @param key The key that will be removed.
+    */
+   public void removeAll(Object key) {
+
+      for (IdMapTuple page : this._pageStack) {
+
+         page.map.remove(key);
+
+      }
+
    }
 
    /*

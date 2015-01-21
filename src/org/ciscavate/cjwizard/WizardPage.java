@@ -26,6 +26,7 @@ import java.util.Set;
 
 import javax.swing.AbstractButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.text.JTextComponent;
@@ -148,6 +149,8 @@ public abstract class WizardPage extends JPanel {
 
       if (c instanceof CustomWizardComponent) {
          val = ((CustomWizardComponent) c).getValue();
+      } else if (c instanceof JFormattedTextField) {
+         val = ((JFormattedTextField) c).getValue();
       } else if (c instanceof JTextComponent) {
          val = ((JTextComponent) c).getText();
       } else if (c instanceof AbstractButton){

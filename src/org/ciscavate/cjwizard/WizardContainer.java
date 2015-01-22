@@ -329,7 +329,6 @@ public class WizardContainer extends JPanel implements WizardController {
          }
 
          // get the settings from the page that is going away:
-         getSettings().newPage(lastPage.getId());
          lastPage.updateSettings(getSettings());
 
          // Save the current buttons status
@@ -382,6 +381,9 @@ public class WizardContainer extends JPanel implements WizardController {
 
       _path.add(nextPage);
 
+      // And add a page for its settings.
+      getSettings().newPage(nextPage.getId());
+
       // tell the page that it is about to be rendered:
       nextPage.rendering(getPath(), getSettings());
       _template.setPage(nextPage);
@@ -404,9 +406,6 @@ public class WizardContainer extends JPanel implements WizardController {
       if (-1 == idx) {
          // new page
          if (null != lastPage) {
-            // get the settings from the page that is going away:
-            getSettings().newPage(lastPage.getId());
-            
             // Save the current statuses
             _cancelStatuses.push(_cancelAction.isEnabled());
             _prevStatuses.push(_prevAction.isEnabled());
@@ -457,6 +456,9 @@ public class WizardContainer extends JPanel implements WizardController {
             
             getPath().add(page);
          }
+
+         // And we prepare the page of settings for the new page.
+         getSettings().newPage(page.getId());
 
       } else {
          // page is in the path at idx.

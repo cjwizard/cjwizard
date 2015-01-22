@@ -180,6 +180,8 @@ public abstract class WizardPage extends JPanel {
       }
       if (c instanceof CustomWizardComponent) {
          ((CustomWizardComponent) c).setValue(o);
+      } else if (c instanceof JFormattedTextField) {
+         ((JFormattedTextField)c).setValue(o);
       } else if (c instanceof JTextComponent) {
          String text = (String)o;
          if (!text.isEmpty()) {

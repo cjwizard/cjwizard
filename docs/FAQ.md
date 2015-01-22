@@ -40,3 +40,15 @@ for Spnaish it will be `cjwizard_es.properties`.
 
 If you have translated the resources, we will be pleased to add them to cjwizard
 if you tell us to do so.
+
+## What components are supported by default? ##
+
+For now this is a list of components that are supported without the user need to
+do more than setting its name.
+
+* `CustomWizardComponent`. Used `getValue()` and `setValue()`.
+* `JFormattedTextField`. Used `getValue()` and `setValue()`.
+* `JTextComponent`. Used `getText()` and `setText()`.
+* `AbstractButton`. Used `isSelected()` and `setSelected()`.
+* `JComboBox`. Used `getSelectedItem()` and `setSelectedItem()`.
+* `JList`. Used `getSelectedValues()` and spect a `Object[]` of selected items to select them.

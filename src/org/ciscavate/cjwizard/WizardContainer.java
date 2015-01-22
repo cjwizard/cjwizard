@@ -287,8 +287,11 @@ public class WizardContainer extends JPanel implements WizardController {
       }
 
       _visitedPath.push(removing);
-      // update roll-back the settings:
+
+      // Save settings (so can be restored if we return to the same page).
       removing.updateSettings(getSettings());
+      getSettings().commit();
+      // But don't let it as actual settings.
       getSettings().rollBack();
 
       // Save current buttons statuses.

@@ -602,7 +602,7 @@ public class WizardContainer extends JPanel implements WizardController {
    }
 
    /**
-    * @return The last (current) page of the current {@link #_path} or null if
+    * @return The last (current) page of the current {@link #getPath()} or null if
     *         the path is empty.
     */
    public WizardPage currentPage() {

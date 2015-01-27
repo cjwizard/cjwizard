@@ -43,6 +43,8 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class WizardPage extends JPanel {
 
+   private static final long serialVersionUID = 20140210L;
+
    /**
     * Commons logging log instance
     */
@@ -99,7 +101,7 @@ public abstract class WizardPage extends JPanel {
    /**
     * Gets the unique identifier for this wizard page;
     * 
-    * @return
+    * @return The identifier of this wizard page.
     */
    public final String getId(){
       return ""+_id;
@@ -129,6 +131,8 @@ public abstract class WizardPage extends JPanel {
     * 
     * This method should update the WizardSettings Map so that it contains
     * the new key/value pairs from this page.
+    * 
+    * @param settings The settings object that will be updated.
     * 
     */
    public void updateSettings(WizardSettings settings){
@@ -214,6 +218,10 @@ public abstract class WizardPage extends JPanel {
     * 
     * This provides an opportunity to adjust the next/finish buttons and
     * customize the ui based on feedback.
+    * 
+    * @param path The current path.
+    * @param settings The current settings.
+    * 
     */
    public void rendering(List<WizardPage> path, WizardSettings settings) {
       for (Component c : _namedComponents){
@@ -271,7 +279,10 @@ public abstract class WizardPage extends JPanel {
    }
 
    /**
-    * @return
+    * 
+    * Obtain the current components with names that where added to the page.
+    * 
+    * @return A set with the named components.
     */
    protected Set<Component> getNamedComponents() {
       return _namedComponents;

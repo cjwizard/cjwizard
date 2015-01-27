@@ -18,6 +18,10 @@ package org.ciscavate.cjwizard;
 import java.util.List;
 
 /**
+ * 
+ * Interface that must be implemented by classes that want to control the
+ * process of the Wizard.
+ * 
  * @author rcreswick
  *
  */
@@ -25,13 +29,13 @@ public interface WizardController {
 
    /**
     * Register a listener with this wizard.
-    * @param listener
+    * @param listener The listener that must be added.
     */
    public void addWizardListener(WizardListener listener);
    
    /**
     * Removes the specified listener.
-    * @param listener
+    * @param listener The listener that must be removed.
     */
    public void removeWizardListener(WizardListener listener);
 
@@ -45,7 +49,7 @@ public interface WizardController {
    /**
     * Gets the path of pages at the current point in the dialog.
     * 
-    * @return
+    * @return A list of pages visited from start to the current point.
     */
    public List<WizardPage> getPath();
 
@@ -86,21 +90,21 @@ public interface WizardController {
    /**
     * Sets the enabled status of the Next Button.
     * 
-    * @param enabled
+    * @param enabled true to enable it, false otherwise.
     */
    public void setNextEnabled(boolean enabled);
 
    /**
     * Sets the enabled status of the Prev. button.
     * 
-    * @param enabled
+    * @param enabled true to enable it, false otherwise.
     */
    public void setPrevEnabled(boolean enabled);
 
    /**
     * Sets the enabled status of the Finish button.
     * 
-    * @param enabled
+    * @param enabled true to enable it, false otherwise.
     */
    public void setFinishEnabled(boolean enabled);
 

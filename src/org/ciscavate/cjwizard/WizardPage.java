@@ -271,6 +271,19 @@ public abstract class WizardPage extends JPanel {
    }
    
    /**
+    * Set the enabled status of the Cancel button.
+    * 
+    * @param enabled true to enable it, false otherwise.
+    * 
+    * @since 20150127
+    * 
+    */
+   protected void setCancelEnabled(boolean enabled){
+      if (null != _controller)
+         _controller.setCancelEnabled(enabled);
+   }
+   
+   /**
     * Returns a string reperesntation of this wizard page.
     */
    @Override

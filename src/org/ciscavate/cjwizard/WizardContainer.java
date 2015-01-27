@@ -42,8 +42,12 @@ import org.ciscavate.utilities.ExceptionUtilities;
  * 
  * @author rcreswick
  * 
+ * @version 20150127
+ * 
  */
 public class WizardContainer extends JPanel implements WizardController {
+
+   private static final long serialVersionUID = 20150127L;
 
    /**
     * Commons logging log instance
@@ -635,6 +639,15 @@ public class WizardContainer extends JPanel implements WizardController {
     */
    public void setFinishEnabled(boolean enabled) {
       _finishAction.setEnabled(enabled);
+   }
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see org.ciscavate.cjwizard.WizardController#setCancelEnabled(boolean)
+    */
+   public void setCancelEnabled(boolean enabled) {
+      _cancelAction.setEnabled(enabled);
    }
 
 }

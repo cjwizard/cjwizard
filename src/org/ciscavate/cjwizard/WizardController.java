@@ -23,6 +23,8 @@ import java.util.List;
  * process of the Wizard.
  * 
  * @author rcreswick
+ * 
+ * @version 20150127
  *
  */
 public interface WizardController {
@@ -108,5 +110,14 @@ public interface WizardController {
     */
    public void setFinishEnabled(boolean enabled);
 
+   /**
+    * Sets the enabled status of the Cancel button.
+    * 
+    * @param enabled true to enable it, false otherwise.
+    * 
+    * @since 20150127
+    * 
+    */
+   public void setCancelEnabled(boolean enabled);
 
 }

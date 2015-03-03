@@ -15,7 +15,7 @@
   </scm>
   <issueManagement>
     <system>Github Issue Tracker</system>
-    <url>https://by-stjira.bayer-ag.com/browse/LACOS</url>
+    <url>https://github.com/creswick/cjwizard/issues</url>
   </issueManagement>
   <ciManagement>
     <system>Travis CI</system>
@@ -29,16 +29,6 @@
   </properties>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
-    <resources>
-      <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

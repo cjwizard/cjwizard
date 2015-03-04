@@ -16,4 +16,4 @@ This shows CJWizard in action, with a custom PageTemplate (drawing the list of d
 
 ## Build status ##
 Build status on [Travis CI](https://travis-ci.org/):
-[![Build Status](https://travis-ci.org/guerda/cjwizard.svg?branch=master)](https://travis-ci.org/guerda/cjwizard)
+[![Build Status](https://travis-ci.org/creswick/cjwizard.svg?branch=master)](https://travis-ci.org/creswick/cjwizard)

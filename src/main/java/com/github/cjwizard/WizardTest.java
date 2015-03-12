@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,7 +26,8 @@ import javax.swing.JTextField;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ciscavate.cjwizard.pagetemplates.TitledPageTemplate;
+
+import com.github.cjwizard.pagetemplates.TitledPageTemplate;
 
 /**
  * This demo class uses a JDialog to hold the wizard.
@@ -122,7 +123,7 @@ public class WizardTest extends JDialog {
                }
 
                /* (non-Javadoc)
-                * @see org.ciscavate.cjwizard.WizardPage#updateSettings(org.ciscavate.cjwizard.WizardSettings)
+                * @see com.github.cjwizard.WizardPage#updateSettings(com.github.cjwizard.WizardSettings)
                 */
                @Override
                public void updateSettings(WizardSettings settings) {
@@ -160,7 +161,7 @@ public class WizardTest extends JDialog {
       
       
       /* (non-Javadoc)
-       * @see org.ciscavate.cjwizard.PageFactory#createPage(java.util.List, org.ciscavate.cjwizard.WizardSettings)
+       * @see com.github.cjwizard.PageFactory#createPage(java.util.List, com.github.cjwizard.WizardSettings)
        */
       @Override
       public WizardPage createPage(List<WizardPage> path,

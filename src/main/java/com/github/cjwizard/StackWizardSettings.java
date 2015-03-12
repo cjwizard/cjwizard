@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.util.Collection;
 import java.util.HashMap;

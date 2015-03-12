@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public abstract class APageFactory implements PageFactory {
 
    /*
     * (non-Javadoc)
-    * @see org.ciscavate.cjwizard.PageFactory#isTransient(java.util.List, org.ciscavate.cjwizard.WizardSettings)
+    * @see com.github.cjwizard.PageFactory#isTransient(java.util.List, com.github.cjwizard.WizardSettings)
     */
    @Override
    public boolean isTransient(List<WizardPage> path, WizardSettings settings) {

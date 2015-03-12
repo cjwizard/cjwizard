@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -32,9 +32,10 @@ import javax.swing.JPanel;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ciscavate.cjwizard.pagetemplates.DefaultPageTemplate;
-import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
-import org.ciscavate.utilities.ExceptionUtilities;
+
+import com.github.cjwizard.pagetemplates.DefaultPageTemplate;
+import com.github.cjwizard.pagetemplates.PageTemplate;
+import com.github.cjwizard.utilities.ExceptionUtilities;
 
 /**
  * This is the primary "Wizard" class. It must be instantiated with a
@@ -57,7 +58,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /**
     * Resource to translate GUI elements.
     */
-   private static ResourceBundle msg = ResourceBundle.getBundle("org.ciscavate.cjwizard.i18n.cjwizard");
+   private static ResourceBundle msg = ResourceBundle.getBundle("com.github.cjwizard.i18n.cjwizard");
 
    private static final String I18N_NEXT = "NEXT";
    private static final String I18N_PREVIOUS = "PREVIOUS";
@@ -552,7 +553,7 @@ public class WizardContainer extends JPanel implements WizardController {
     * (non-Javadoc)
     * 
     * @see
-    * org.ciscavate.cjwizard.WizardController#addWizardListener(com.stottlerhenke
+    * com.github.cjwizard.WizardController#addWizardListener(com.stottlerhenke
     * .presentwell.wizard.WizardListener)
     */
    public void addWizardListener(WizardListener listener) {
@@ -568,7 +569,7 @@ public class WizardContainer extends JPanel implements WizardController {
     * (non-Javadoc)
     * 
     * @see
-    * org.ciscavate.cjwizard.WizardController#removeWizardListener(com.stottlerhenke
+    * com.github.cjwizard.WizardController#removeWizardListener(com.stottlerhenke
     * .presentwell.wizard.WizardListener)
     */
    public void removeWizardListener(WizardListener listener) {
@@ -579,7 +580,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /*
     * (non-Javadoc)
     * 
-    * @see org.ciscavate.cjwizard.WizardController#getSettings()
+    * @see com.github.cjwizard.WizardController#getSettings()
     */
    public WizardSettings getSettings() {
       return _settings;
@@ -599,7 +600,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /*
     * (non-Javadoc)
     * 
-    * @see org.ciscavate.cjwizard.WizardController#getPath()
+    * @see com.github.cjwizard.WizardController#getPath()
     */
    public List<WizardPage> getPath() {
       return _path;
@@ -617,7 +618,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /*
     * (non-Javadoc)
     * 
-    * @see org.ciscavate.cjwizard.WizardController#setNextEnabled(boolean)
+    * @see com.github.cjwizard.WizardController#setNextEnabled(boolean)
     */
    public void setNextEnabled(boolean enabled) {
       _nextAction.setEnabled(enabled);
@@ -626,7 +627,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /*
     * (non-Javadoc)
     * 
-    * @see org.ciscavate.cjwizard.WizardController#setPrevEnabled(boolean)
+    * @see com.github.cjwizard.WizardController#setPrevEnabled(boolean)
     */
    public void setPrevEnabled(boolean enabled) {
       _prevAction.setEnabled(enabled);
@@ -635,7 +636,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /*
     * (non-Javadoc)
     * 
-    * @see org.ciscavate.cjwizard.WizardController#setFinishEnabled(boolean)
+    * @see com.github.cjwizard.WizardController#setFinishEnabled(boolean)
     */
    public void setFinishEnabled(boolean enabled) {
       _finishAction.setEnabled(enabled);
@@ -644,7 +645,7 @@ public class WizardContainer extends JPanel implements WizardController {
    /*
     * (non-Javadoc)
     * 
-    * @see org.ciscavate.cjwizard.WizardController#setCancelEnabled(boolean)
+    * @see com.github.cjwizard.WizardController#setCancelEnabled(boolean)
     */
    public void setCancelEnabled(boolean enabled) {
       _cancelAction.setEnabled(enabled);

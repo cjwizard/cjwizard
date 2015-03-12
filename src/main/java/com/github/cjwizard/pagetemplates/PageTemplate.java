@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard.pagetemplates;
+package com.github.cjwizard.pagetemplates;
 
 import javax.swing.JPanel;
 
-import org.ciscavate.cjwizard.WizardController;
-import org.ciscavate.cjwizard.WizardPage;
+import com.github.cjwizard.WizardController;
+import com.github.cjwizard.WizardPage;
 
 /**
  * @author rcreswick

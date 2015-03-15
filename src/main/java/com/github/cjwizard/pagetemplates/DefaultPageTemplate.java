@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard.pagetemplates;
+package com.github.cjwizard.pagetemplates;
 
 import java.awt.CardLayout;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ciscavate.cjwizard.WizardContainer;
-import org.ciscavate.cjwizard.WizardPage;
+
+import com.github.cjwizard.WizardContainer;
+import com.github.cjwizard.WizardPage;
 
 /**
  * This class provides a point at which third-party code can
@@ -46,7 +47,7 @@ public class DefaultPageTemplate extends PageTemplate {
    }
    
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.PageTemplate#setPage(org.ciscavate.cjwizard.WizardPage)
+    * @see com.github.cjwizard.PageTemplate#setPage(com.github.cjwizard.WizardPage)
     */
    public void setPage(final WizardPage page){
       log.debug("Setting page: "+page);

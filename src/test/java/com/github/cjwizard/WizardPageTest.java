@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.awt.Component;
 import java.text.NumberFormat;
@@ -17,6 +17,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.github.cjwizard.CustomWizardComponent;
+import com.github.cjwizard.StackWizardSettings;
+import com.github.cjwizard.WizardPage;
+import com.github.cjwizard.WizardSettings;
+
 
 /**
  * @author rogue
@@ -31,7 +36,7 @@ public class WizardPageTest {
       private String value;
 
       /* (non-Javadoc)
-       * @see org.ciscavate.cjwizard.CustomWizardComponent#getValue()
+       * @see com.github.cjwizard.CustomWizardComponent#getValue()
        */
       @Override
       public Object getValue() {
@@ -39,7 +44,7 @@ public class WizardPageTest {
       }
       
       /* (non-Javadoc)
-       * @see org.ciscavate.cjwizard.CustomWizardComponent#setValue(java.lang.Object)
+       * @see com.github.cjwizard.CustomWizardComponent#setValue(java.lang.Object)
        */
       @Override
       public void setValue(Object o)
@@ -90,7 +95,7 @@ public class WizardPageTest {
     * Verifies that widgets added to a WizardPage with names are located and
     * accessed properly.
     * 
-    * Test method for {@link org.ciscavate.cjwizard.WizardPage#getNamedComponents()}.
+    * Test method for {@link com.github.cjwizard.WizardPage#getNamedComponents()}.
     */
    @Test
    public void testGetNamedComponents_countComponents() {
@@ -105,7 +110,7 @@ public class WizardPageTest {
     * Verifies that widgets added to a WizardPage with names are located and
     * accessed properly.
     * 
-    * Test method for {@link org.ciscavate.cjwizard.WizardPage#updateSettings(org.ciscavate.cjwizard.WizardSettings)}.
+    * Test method for {@link com.github.cjwizard.WizardPage#updateSettings(com.github.cjwizard.WizardSettings)}.
     */
    @Test
    public void testUpdateSettings_keysExist() {
@@ -128,7 +133,7 @@ public class WizardPageTest {
     * Verifies that widgets added to a WizardPage with names are located and
     * accessed properly.
     * 
-    * Test method for {@link org.ciscavate.cjwizard.WizardPage#updateSettings(org.ciscavate.cjwizard.WizardSettings)}.
+    * Test method for {@link com.github.cjwizard.WizardPage#updateSettings(com.github.cjwizard.WizardSettings)}.
     */
    @Test
    public void testUpdateSettings_getValues() {

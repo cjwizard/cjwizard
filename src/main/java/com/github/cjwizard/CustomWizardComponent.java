@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 /**
  * An interface to allow the CJWizardPage to extract values from

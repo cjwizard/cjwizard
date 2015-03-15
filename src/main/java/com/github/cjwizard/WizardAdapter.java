@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import java.util.List;
 public class WizardAdapter implements WizardListener {
 
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardListener#onCanceled(java.util.List, org.ciscavate.cjwizard.WizardSettings)
+    * @see com.github.cjwizard.WizardListener#onCanceled(java.util.List, com.github.cjwizard.WizardSettings)
     */
    @Override
    public void onCanceled(List<WizardPage> path, WizardSettings settings) {
@@ -33,7 +33,7 @@ public class WizardAdapter implements WizardListener {
    }
 
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardListener#onFinished(java.util.List, org.ciscavate.cjwizard.WizardSettings)
+    * @see com.github.cjwizard.WizardListener#onFinished(java.util.List, com.github.cjwizard.WizardSettings)
     */
    @Override
    public void onFinished(List<WizardPage> path, WizardSettings settings) {
@@ -41,7 +41,7 @@ public class WizardAdapter implements WizardListener {
    }
 
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardListener#onPageChanged(org.ciscavate.cjwizard.WizardPage, java.util.List)
+    * @see com.github.cjwizard.WizardListener#onPageChanged(com.github.cjwizard.WizardPage, java.util.List)
     */
    @Override
    public void onPageChanged(WizardPage newPage, List<WizardPage> path) {

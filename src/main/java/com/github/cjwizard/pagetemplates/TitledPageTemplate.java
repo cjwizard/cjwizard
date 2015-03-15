@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard.pagetemplates;
+package com.github.cjwizard.pagetemplates;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
-import org.ciscavate.cjwizard.WizardPage;
+import com.github.cjwizard.WizardPage;
 
 /**
  * Simple PageTemplate that lists the WizardPage title at the top of each page
@@ -69,7 +69,7 @@ public class TitledPageTemplate extends PageTemplate {
    }
    
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.pagetemplates.PageTemplate#setPage(org.ciscavate.cjwizard.WizardPage)
+    * @see com.github.cjwizard.pagetemplates.PageTemplate#setPage(com.github.cjwizard.WizardPage)
     */
    @Override
    public void setPage(final WizardPage page) {

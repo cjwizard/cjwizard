@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -49,7 +49,7 @@ implements WizardSettings
    private static Log log = LogFactory.getLog(FlatWizardSettings.class);
    
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardSettings#newPage(java.lang.String)
+    * @see com.github.cjwizard.WizardSettings#newPage(java.lang.String)
     */
    @Override
    public void newPage(String id)
@@ -58,7 +58,7 @@ implements WizardSettings
    }
    
    /* (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardSettings#rollBack()
+    * @see com.github.cjwizard.WizardSettings#rollBack()
     */
    @Override
    public void rollBack()
@@ -68,7 +68,7 @@ implements WizardSettings
    
    /*
     * (non-Javadoc)
-    * @see org.ciscavate.cjwizard.WizardSettings#commit()
+    * @see com.github.cjwizard.WizardSettings#commit()
     */
    @Override
    public void commit()

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.awt.Dimension;
 import java.util.List;
@@ -25,7 +25,8 @@ import javax.swing.JTextField;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ciscavate.cjwizard.pagetemplates.TitledPageTemplate;
+
+import com.github.cjwizard.pagetemplates.TitledPageTemplate;
 
 /**
  * This demo class uses a JDialog to hold the wizard.
@@ -101,7 +102,7 @@ public class WizardTest2 extends JDialog {
    private class TestFactory extends APageFactory{
       
       /* (non-Javadoc)
-       * @see org.ciscavate.cjwizard.PageFactory#createPage(java.util.List, org.ciscavate.cjwizard.WizardSettings)
+       * @see com.github.cjwizard.PageFactory#createPage(java.util.List, com.github.cjwizard.WizardSettings)
        */
       @Override
       public WizardPage createPage(List<WizardPage> path,
@@ -200,7 +201,7 @@ public class WizardTest2 extends JDialog {
           * 
           * Also, if the cities are the same it show a dialog telling it.
           * 
-          * @see org.ciscavate.cjwizard.WizardPage#onNext(org.ciscavate.cjwizard.WizardSettings)
+          * @see com.github.cjwizard.WizardPage#onNext(com.github.cjwizard.WizardSettings)
           * 
           * @return true if they are different (so the page can change) or false
           * if they are different (so the wizard don't advance to next page).

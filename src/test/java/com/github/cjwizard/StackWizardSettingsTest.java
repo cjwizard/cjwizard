@@ -1,13 +1,16 @@
 /**
  * 
  */
-package org.ciscavate.cjwizard;
+package com.github.cjwizard;
 
 import java.util.Set;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import com.github.cjwizard.StackWizardSettings;
+import com.github.cjwizard.WizardSettings;
 
 /**
  * @author rcreswick
@@ -16,7 +19,7 @@ import org.junit.Test;
 public class StackWizardSettingsTest {
 
    /**
-    * Test method for {@link org.ciscavate.cjwizard.StackWizardSettings#rollBack(java.lang.String)}.
+    * Test method for {@link com.github.cjwizard.StackWizardSettings#rollBack(java.lang.String)}.
     */
    @Test
    public void testRollBack() {

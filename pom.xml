@@ -61,6 +61,7 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <!-- Added the source plugin so that maven does not warn you about missing a version -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>

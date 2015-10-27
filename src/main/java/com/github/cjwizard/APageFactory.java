@@ -25,7 +25,7 @@ import java.util.List;
  * implementations so you don't get in problems if new functionality is added
  * to the {@link PageFactory} interface.
  *
- * @author Javier Alfonso <phoneixsegovia@gmail.com>
+ * @author <a href="mailto:phoneixsegovia@gmail.com">Javier Alfonso</a>
  * @version 20140929
  *
  */

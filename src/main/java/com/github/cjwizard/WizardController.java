@@ -66,13 +66,13 @@ public interface WizardController {
    
    /**
     * Forcibly visit the next page.  This is equivalent to the user clicking on
-    * "Next >", but this <b>can</b> be done when the button is disabled.
+    * "Next &gt;", but this <b>can</b> be done when the button is disabled.
     */
    public void next();
    
    /**
     * Forcibly visit the previous page.  This is equivalent to the user clicking on
-    * "< Prev", but this <b>can</b> be done when the button is disabled.
+    * "&lt; Prev", but this <b>can</b> be done when the button is disabled.
     */
    public void prev();
    

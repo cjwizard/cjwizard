@@ -340,7 +340,7 @@ public class StackWizardSettings implements WizardSettings {
     * 
     * @return <code>true</code> If active keys are the same in both settings and
     *         its values are also equals.
-    * @author Javier Alfonso <PhoneixSegovia@gmail.com>
+    * @author <a href="mailto:PhoneixSegovia@gmail.com">Javier Alfonso</a>
     */
    public boolean settingsEquals(WizardSettings ws) {
 

@@ -74,6 +74,13 @@ public class WizardContainer extends JPanel implements WizardController {
     * The path from the start of the dialog to the current location.
     */
    private final List<WizardPage> _path;
+   
+   /**
+     * In a wizard with a conditional path if after having traversed once the pages
+     * I hit back and re-traverse the pages should I store the previously selected
+     * path and use it or forget it. By default this is false.
+     */
+    private boolean forgetTraversedPath = false;
 
    /**
     * The path of already-visited pages starting from the current page.
@@ -350,7 +357,7 @@ public class WizardContainer extends JPanel implements WizardController {
       // Get the next page
       WizardPage nextPage = null;
       if (_visitedPath.isEmpty()
-            || _factory.isTransient(getPath(), getSettings())) {
+            || _factory.isTransient(getPath(), getSettings()) || forgetTraversedPath) {
 
          // If we can't use the cached page, create a new one.
          nextPage = _factory.createPage(getPath(), getSettings());
@@ -650,5 +657,13 @@ public class WizardContainer extends JPanel implements WizardController {
    public void setCancelEnabled(boolean enabled) {
       _cancelAction.setEnabled(enabled);
    }
+
+    /**
+     * @param forgetTraversedPath the forgetTraversedPath to set
+     */
+    public void setForgetTraversedPath(boolean forgetTraversedPath)
+    {
+        this.forgetTraversedPath = forgetTraversedPath;
+    }
 
 }

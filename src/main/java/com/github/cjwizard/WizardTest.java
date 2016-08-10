@@ -60,6 +60,12 @@ public class WizardTest extends JDialog {
                              new TitledPageTemplate(),
                              new StackWizardSettings());
       
+      //do you want to store previously visited path and repeat it if you hit back
+      //and then go forward a second time?
+      //this options makes sense if you have a conditional path where depending on choice of a page
+      // you can visit one of two other pages.
+      wc.setForgetTraversedPath(true);
+      
       // add a wizard listener to update the dialog titles and notify the
       // surrounding application of the state of the wizard:
       wc.addWizardListener(new WizardListener(){

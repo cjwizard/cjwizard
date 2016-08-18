@@ -22,8 +22,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This settings can save pairs of key and values in a plain {@link HashMap}.
@@ -42,12 +42,12 @@ implements WizardSettings
     * compatible with older versions.
     */
    private static final long serialVersionUID = 20141205L;
-   
+
    /**
-    * Commons logging log instance
+    * Log instance
     */
-   private static Log log = LogFactory.getLog(FlatWizardSettings.class);
-   
+   private static final Logger log = LoggerFactory.getLogger(FlatWizardSettings.class);
+
    /* (non-Javadoc)
     * @see com.github.cjwizard.WizardSettings#newPage(java.lang.String)
     */

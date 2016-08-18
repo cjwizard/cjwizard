@@ -17,11 +17,11 @@ package com.github.cjwizard.pagetemplates;
 
 import java.awt.CardLayout;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.github.cjwizard.WizardContainer;
 import com.github.cjwizard.WizardPage;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class provides a point at which third-party code can
@@ -36,9 +36,9 @@ import com.github.cjwizard.WizardPage;
 public class DefaultPageTemplate extends PageTemplate {
    
    /**
-    * Commons logging log instance
+    * Log instance
     */
-   private static Log log = LogFactory.getLog(WizardContainer.class);
+   private final Logger log = LoggerFactory.getLogger(WizardContainer.class);
    
    private final CardLayout _layout = new CardLayout();
    

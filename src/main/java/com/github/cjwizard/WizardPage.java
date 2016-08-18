@@ -31,8 +31,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.text.JTextComponent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -46,15 +46,15 @@ public abstract class WizardPage extends JPanel {
    private static final long serialVersionUID = 20140210L;
 
    /**
-    * Commons logging log instance
+    * Logger instance
     */
-   private static Log log = LogFactory.getLog(WizardPage.class);
-   
+   private final Logger log = LoggerFactory.getLogger(WizardPage.class);
+
    /**
     * Count of WizardPages, used to get unique IDs
     */
    private static long _idCounter=0;
-   
+
    /**
     * Unique ID for this wizard page.
     */

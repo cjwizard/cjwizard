@@ -30,8 +30,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.cjwizard.pagetemplates.DefaultPageTemplate;
 import com.github.cjwizard.pagetemplates.PageTemplate;
@@ -51,9 +51,9 @@ public class WizardContainer extends JPanel implements WizardController {
    private static final long serialVersionUID = 20150127L;
 
    /**
-    * Commons logging log instance
+    * Log instance
     */
-   private static Log log = LogFactory.getLog(WizardContainer.class);
+   private final Logger log = LoggerFactory.getLogger(WizardContainer.class);
 
    /**
     * Resource to translate GUI elements.

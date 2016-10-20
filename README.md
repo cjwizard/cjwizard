@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.org/cjwizard/cjwizard.svg?branch=master)](https://travis-ci.org/cjwizard/cjwizard)
+
+
 CJWizard is an API for creating wizard dialogs in Java.
 
 This library was spurred by my use of the Java Wizard library at Java.net (https://wizard.dev.java.net/).  That library offers a good framework for simple wizards, but it dictates a great deal of what you can do--justified by the java usability guidelines.  However, I don't believe all the restrictions actually are justified by those guidelines.  For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it).  Making this area interactive, as a global navigation tool, is non-trivial.
@@ -42,7 +46,3 @@ To use this library you need
 This library depends on
  
 * slf4j-api
-
-## Build status ##
-Build status on [Travis CI](https://travis-ci.org/):
-[![Build Status](https://travis-ci.org/cjwizard/cjwizard.svg?branch=master)](https://travis-ci.org/cjwizard/cjwizard)

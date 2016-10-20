@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 
- * This inteface must be implemented by classes that provide pages for the
+ * This interface must be implemented by classes that provide pages for the
  * Wizard.
  * 
  * @author rcreswick

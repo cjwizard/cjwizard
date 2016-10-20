@@ -8,7 +8,13 @@ That said, I learned a lot from the Java Wizard API, and some of those ideas hav
 
 Take a look at the [FAQ](docs/FAQ.md) and [QuickStartGuide](docs/quickstart.md) to get going, and send me questions if you have any.
 
-## Maven / JCenter ##
+## Screenshots ##
+
+This shows CJWizard in action, with a custom PageTemplate (drawing the list of dialog pages on the left) that wraps around a !TitledPageTemplate (drawing the underlined title of the !WizardPage).  The Windows L&F was used to make it look like a native app.  (The Finish button is enabled because the surrounding app is robust to missing data, and allows for the user to come back to the wizard at a later date, if needed.  Generally, and by default, the Finish button is disabled if it is not explicitly enabled, which often happens in the `render()` method of the last !WizardPage)
+
+![sample dialog](http://cjwizard.googlecode.com/files/cjwizard1.png)
+
+## Maven coordinates / JCenter  ##
 
 CJWizard is now hosted on JCenter:
 
@@ -25,11 +31,17 @@ The dependency section for your pom.xml is:
 </dependency>
 ```
 
-## Screenshots ##
+## Requirements ##
 
-This shows CJWizard in action, with a custom PageTemplate (drawing the list of dialog pages on the left) that wraps around a !TitledPageTemplate (drawing the underlined title of the !WizardPage).  The Windows L&F was used to make it look like a native app.  (The Finish button is enabled because the surrounding app is robust to missing data, and allows for the user to come back to the wizard at a later date, if needed.  Generally, and by default, the Finish button is disabled if it is not explicitly enabled, which often happens in the `render()` method of the last !WizardPage)
+To use this library you need
+ 
+* Java 7 or later
 
-![sample dialog](http://cjwizard.googlecode.com/files/cjwizard1.png)
+## Dependencies ##
+
+This library depends on
+ 
+* slf4j-api
 
 ## Build status ##
 Build status on [Travis CI](https://travis-ci.org/):

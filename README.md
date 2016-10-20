@@ -20,7 +20,7 @@ The dependency section for your pom.xml is:
 <dependency>
   <groupId>com.github.cjwizard</groupId>
   <artifactId>cjwizard</artifactId>
-  <version>1.0.6</version>
+  <version>1.0.7</version>
   <type>pom</type>
 </dependency>
 ```

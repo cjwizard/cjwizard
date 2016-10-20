@@ -20,9 +20,7 @@ This shows CJWizard in action, with a custom PageTemplate (drawing the list of d
 
 ## Maven coordinates / JCenter  ##
 
-CJWizard is now hosted on JCenter:
-
-- https://bintray.com/creswick/CJWizard/cjwizard
+CJWizard is now hosted on JCenter: https://bintray.com/creswick/CJWizard/cjwizard
 
 The dependency section for your pom.xml is:
 
@@ -34,6 +32,8 @@ The dependency section for your pom.xml is:
   <type>pom</type>
 </dependency>
 ```
+
+For gradle and ivy users: See "build settings" in https://bintray.com/creswick/CJWizard/cjwizard
 
 ## Requirements ##
 

@@ -35,6 +35,10 @@ The dependency section for your pom.xml is:
 
 For gradle and ivy users: See "build settings" in https://bintray.com/cjwizard/CJWizard/cjwizard
 
+## Documentation ##
+
+See [docs folder](../docs)
+
 ## Requirements ##
 
 To use this library you need

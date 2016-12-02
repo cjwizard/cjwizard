@@ -5,7 +5,7 @@ The best approach (for now) is to look at the
 
 ## Quick Start ##
 
-WizardContainer is the widget that contains the wizard itsself, so your first step is to determine where that widget will go (it is a subclass of JPanel).  WizardTest places the WizardContainer directly in the content pane of a JDialog, which is a pretty common use case.  You could just as easily embed it in a larger window, or some other application if you want, though.
+WizardContainer is the widget that contains the wizard itself, so your first step is to determine where that widget will go (it is a subclass of JPanel).  WizardTest places the WizardContainer directly in the content pane of a JDialog, which is a pretty common use case.  You could just as easily embed it in a larger window, or some other application if you want, though.
 
 ```
    // create the WizardContainer:

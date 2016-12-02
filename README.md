@@ -37,7 +37,7 @@ For gradle and ivy users: See "build settings" in https://bintray.com/cjwizard/C
 
 ## Documentation ##
 
-See [docs folder](../docs)
+See [docs folder](./docs)
 
 ## Requirements ##
 

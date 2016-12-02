@@ -32,8 +32,8 @@ steps:
 
 1. Copy `src/org/ciscavate/cjwizard/i18n/cjwizard.properties` and rename
 it like `cjwizard_XX.properties` where `XX` is your language code. For example
-for Spnaish it will be `cjwizard_es.properties`.
-2. Open it with a simple text editor like Notepad or Gedit.
+for Spanish it will be `cjwizard_es.properties`.
+2. Open it with a simple text editor like Notepad or Gedit (use ISO-8859-1 encoding!) 
 3. Translate the text in the right side of `=` to your language.
 4. Save the file.
 5. You are done.

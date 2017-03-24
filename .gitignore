@@ -2,3 +2,5 @@
 /target/
 .idea/
 CJWizard.iml
+/cjwizard/target/
+/cjwizard-demo/target/

@@ -1,5 +1,4 @@
 /*
- * Copyright 2017 Dad.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author Dad
+ * @author AO
  */
 public class Main extends javax.swing.JDialog {
 

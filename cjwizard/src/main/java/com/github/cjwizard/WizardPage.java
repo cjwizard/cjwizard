@@ -394,4 +394,13 @@ public abstract class WizardPage extends JPanel {
       return true;
 
    }
+
+    /**
+     * the wizard controller that this wizard page is attached to
+     * @since 1.0.9
+     * @return 
+     */
+    public WizardController getController() {
+        return _controller;
+    }
 }

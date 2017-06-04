@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cjwizard;
+package com.github.cjwizard.demo;
 
 import com.github.cjwizard.APageFactory;
 import com.github.cjwizard.StackWizardSettings;

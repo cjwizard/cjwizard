@@ -34,6 +34,10 @@
             <id>Petikoch</id>
             <url>https://github.com/Petikoch</url>
         </developer>
+        <developer>
+            <id>stevesobol</id>
+            <url>https://github.com/stevesobol</url>
+        </developer>
     </developers>
     <scm>
         <url>https://github.com/cjwizard/cjwizard/</url>

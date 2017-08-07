@@ -3,11 +3,11 @@
     <parent>
         <groupId>com.github.cjwizard</groupId>
         <artifactId>cjwizard-parent</artifactId>
-        <version>1.0.9-SNAPSHOT</version> 
+        <version>1.0.9</version> 
     </parent>
   
     <artifactId>cjwizard-demo</artifactId>
-    <version>1.0.9-SNAPSHOT</version>
+    <version>1.0.9</version>
     <name>CJWizard Demos</name>
     <description>Demos for CJ Wizard</description>
 

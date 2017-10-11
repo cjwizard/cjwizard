@@ -4,7 +4,7 @@
 
 CJWizard is a library for creating swing based wizard dialogs in Java.
 
-This library was spurred by my use of the Java Wizard library at Java.net (https://wizard.dev.java.net/).  That library offers a good framework for simple wizards, but it dictates a great deal of what you can do--justified by the java usability guidelines.  However, I don't believe all the restrictions actually are justified by those guidelines.  For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it).  Making this area interactive, as a global navigation tool, is non-trivial.
+This library was spurred by my use of the Java Wizard library at Java.net (which appears to be gone now; it was previously at https://wizard.dev.java.net/).  That library offers a good framework for simple wizards, but it dictates a great deal of what you can do--justified by the java usability guidelines.  However, I don't believe all the restrictions actually are justified by those guidelines.  For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it).  Making this area interactive, as a global navigation tool, is non-trivial.
 
 I also found it to be extremely cumbersome to define complex wizards that change their branching behavior at runtime.  Generally, I found the Java Wizard API to be difficult to use and at times contradictory.  
 

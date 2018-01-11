@@ -292,11 +292,15 @@ public class WizardContainer extends JPanel implements WizardController {
       log.debug("prev. page");
 
       // store visited pages
-      WizardPage removing = _path.remove(_path.size() - 1);
+      WizardPage removing = _path.get(_path.size() - 1);
 
+      // First check if we should really go back
       if (!removing.onPrev(getSettings())) {
          return;
       }
+      
+      // Now we need to remove it from path
+      _path.remove(_path.size() - 1);
 
       _visitedPath.push(removing);
 

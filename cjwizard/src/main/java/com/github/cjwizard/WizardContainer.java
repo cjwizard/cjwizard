@@ -488,17 +488,22 @@ public class WizardContainer extends JPanel implements WizardController {
             // save visited pages
             _visitedPath.push(_path.remove(i));
             
+            final Boolean cancelStatus = _cancelStatuses.pop();
+            final Boolean prevStatus = _prevStatuses.pop();
+            final Boolean nextStatus = _nextStatuses.pop();
+            final Boolean finishStatus = _finishStatuses.pop();
+            
             // Save current buttons statuses.
-            _visitedCancelStatuses.push(_cancelStatuses.pop());
-            _visitedPrevStatuses.push(_prevStatuses.pop());
-            _visitedNextStatuses.push(_nextStatuses.pop());
-            _visitedFinishStatuses.push(_finishStatuses.pop());
+            _visitedCancelStatuses.push(cancelStatus);
+            _visitedPrevStatuses.push(prevStatus);
+            _visitedNextStatuses.push(nextStatus);
+            _visitedFinishStatuses.push(finishStatus);
             
             // Restore the buttons status.
-            cancelEnabled = _cancelStatuses.pop();
-            previousEnabled = _prevStatuses.pop();
-            nextEnabled = _nextStatuses.pop();
-            finishEnabled = _finishStatuses.pop();
+            cancelEnabled = cancelStatus;
+            previousEnabled = prevStatus;
+            nextEnabled = nextStatus;
+            finishEnabled = finishStatus;
          }
 
          _cancelAction.setEnabled(cancelEnabled);

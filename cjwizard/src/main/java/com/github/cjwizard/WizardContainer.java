@@ -327,6 +327,7 @@ public class WizardContainer extends JPanel implements WizardController {
 
       WizardPage curPage = _path.get(_path.size() - 1);
 
+      firePageChanging(curPage, getPath());
       // tell the page that it is about to be rendered:
       curPage.rendering(getPath(), getSettings());
       _template.setPage(curPage);
@@ -403,6 +404,7 @@ public class WizardContainer extends JPanel implements WizardController {
       // And add a page for its settings.
       getSettings().newPage(nextPage.getId());
 
+      firePageChanging(nextPage, getPath());
       // tell the page that it is about to be rendered:
       nextPage.rendering(getPath(), getSettings());
       _template.setPage(nextPage);
@@ -508,9 +510,20 @@ public class WizardContainer extends JPanel implements WizardController {
 
       }
 
+      firePageChanging(page, getPath());
       page.rendering(_path, getSettings());
       _template.setPage(page);
       firePageChanged(page, _path);
+   }
+
+   /**
+    * @param nextPage
+    * @param path
+    */
+   private void firePageChanging(WizardPage curPage, List<WizardPage> path) {
+      for (WizardListener l : _listeners) {
+         l.onPageChanging(curPage, getPath());
+      }
    }
 
    /**

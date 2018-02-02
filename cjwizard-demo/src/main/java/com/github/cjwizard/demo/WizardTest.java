@@ -88,6 +88,11 @@ public class WizardTest extends JDialog {
             // Set the dialog title to match the description of the new page:
             WizardTest.this.setTitle(newPage.getDescription());
          }
+
+        public void onPageChanging(WizardPage newPage, List<WizardPage> path) {
+            log.debug("settings: "+wc.getSettings());
+            WizardTest.this.dispose();
+        }
       });
       
       // Set up the standard bookkeeping stuff for a dialog, and

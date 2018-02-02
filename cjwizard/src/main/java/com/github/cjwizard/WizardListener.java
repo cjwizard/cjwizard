@@ -27,6 +27,14 @@ import java.util.List;
  */
 public interface WizardListener {
 
+    /**
+     * Invoked when the wizard is about to change to display a new page.
+     * 
+     * @param newPage  The new page being displayed.
+     * @param path The list of WizardPages shown so far.
+     */
+    public void onPageChanging(WizardPage newPage, List<WizardPage> path);
+    
    /**
     * Invoked when the wizard changes to display a new page.
     * 

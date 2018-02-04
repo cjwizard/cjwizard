@@ -41,11 +41,17 @@ public class WizardAdapter implements WizardListener {
    }
 
    /* (non-Javadoc)
+    * @see com.github.cjwizard.WizardListener#onPageChanging(com.github.cjwizard.WizardPage, java.util.List)
+    */
+   public void onPageChanging(WizardPage newPage, List<WizardPage> path) {
+       // empty implementation.
+   }
+
+   /* (non-Javadoc)
     * @see com.github.cjwizard.WizardListener#onPageChanged(com.github.cjwizard.WizardPage, java.util.List)
     */
    @Override
    public void onPageChanged(WizardPage newPage, List<WizardPage> path) {
       // empty implementation.
    }
-
 }

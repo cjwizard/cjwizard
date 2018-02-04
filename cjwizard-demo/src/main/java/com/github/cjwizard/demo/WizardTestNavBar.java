@@ -140,6 +140,12 @@ public class WizardTestNavBar extends javax.swing.JDialog {
                 //update our nav view
                 jListNavigation.setSelectedValue(newPage.getTitle(), true);
             }
+
+            public void onPageChanging(WizardPage newPage,
+                    List<WizardPage> path) {
+                log.fine("settings: " + wc.getSettings());
+                WizardTestNavBar.this.dispose();
+            }
         });
 
         //this populates the list view (nav bar)

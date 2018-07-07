@@ -29,7 +29,6 @@ The dependency section for your pom.xml is:
   <groupId>com.github.cjwizard</groupId>
   <artifactId>cjwizard</artifactId>
   <version>x.y.z</version>
-  <type>pom</type>
 </dependency>
 ```
 

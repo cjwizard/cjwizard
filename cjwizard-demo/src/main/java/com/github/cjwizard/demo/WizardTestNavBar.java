@@ -144,7 +144,6 @@ public class WizardTestNavBar extends javax.swing.JDialog {
             public void onPageChanging(WizardPage newPage,
                     List<WizardPage> path) {
                 log.fine("settings: " + wc.getSettings());
-                WizardTestNavBar.this.dispose();
             }
         });
 

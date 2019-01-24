@@ -48,6 +48,7 @@ public class Main extends javax.swing.JDialog {
         jButtonDemo2 = new javax.swing.JButton();
         jButtonDemo1 = new javax.swing.JButton();
         jButtonNavBar = new javax.swing.JButton();
+        jButtonNavBar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +75,13 @@ public class Main extends javax.swing.JDialog {
             }
         });
 
+        jButtonNavBar1.setText("Nav bar with dynamic pages");
+        jButtonNavBar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNavBar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,7 +94,8 @@ public class Main extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addGap(0, 254, Short.MAX_VALUE))
                     .addComponent(jButtonDemo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonNavBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonNavBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNavBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,7 +109,9 @@ public class Main extends javax.swing.JDialog {
                 .addComponent(jButtonDemo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonNavBar)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonNavBar1)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,6 +144,15 @@ public class Main extends javax.swing.JDialog {
         test.setLocationRelativeTo(null);
         test.setVisible(true);
     }//GEN-LAST:event_jButtonNavBarActionPerformed
+
+    private void jButtonNavBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBar1ActionPerformed
+         // TODO add your handling code here:
+         WizardTest4ComplexNav test = new WizardTest4ComplexNav(new javax.swing.JFrame(),true);
+        test.setSize(new Dimension(500, 300));
+        test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
+        test.setLocationRelativeTo(null);
+        test.setVisible(true);
+    }//GEN-LAST:event_jButtonNavBar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +192,7 @@ public class Main extends javax.swing.JDialog {
     private javax.swing.JButton jButtonDemo1;
     private javax.swing.JButton jButtonDemo2;
     private javax.swing.JButton jButtonNavBar;
+    private javax.swing.JButton jButtonNavBar1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

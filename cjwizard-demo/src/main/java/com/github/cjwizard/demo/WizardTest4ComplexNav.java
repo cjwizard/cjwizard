@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.github.cjwizard.demo;
 
 import com.github.cjwizard.APageFactory;
@@ -23,64 +24,24 @@ import com.github.cjwizard.WizardSettings;
 import com.github.cjwizard.pagetemplates.TitledPageTemplate;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.AbstractListModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
- * Shows a super simple linear wizard with a navigation view (ListView)
- * @since 1.0.9
- * @author Alex O'Ree
+ *
+ * @author AO
  */
-public class WizardTestNavBar extends javax.swing.JDialog {
+public class WizardTest4ComplexNav extends javax.swing.JDialog {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        //NetBeans generates stuff
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WizardTestNavBar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WizardTestNavBar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WizardTestNavBar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WizardTestNavBar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                WizardTestNavBar dialog = new WizardTestNavBar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
+   
     /**
      * Commons logging log instance
      */
@@ -93,7 +54,7 @@ public class WizardTestNavBar extends javax.swing.JDialog {
     /**
      * Creates new form WizardNavBar
      */
-    public WizardTestNavBar(java.awt.Frame parent, boolean modal) {
+    public WizardTest4ComplexNav(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -122,28 +83,27 @@ public class WizardTestNavBar extends javax.swing.JDialog {
             @Override
             public void onCanceled(List<WizardPage> path, WizardSettings settings) {
                 log.fine("settings: " + wc.getSettings());
-                WizardTestNavBar.this.dispose();
+                WizardTest4ComplexNav.this.dispose();
             }
 
             @Override
             public void onFinished(List<WizardPage> path, WizardSettings settings) {
                 log.fine("settings: " + wc.getSettings());
-                WizardTestNavBar.this.dispose();
+                WizardTest4ComplexNav.this.dispose();
             }
 
             @Override
             public void onPageChanged(WizardPage newPage, List<WizardPage> path) {
                 log.fine("settings: " + wc.getSettings());
                 // Set the dialog title to match the description of the new page:
-                WizardTestNavBar.this.setTitle(newPage.getDescription());
+                WizardTest4ComplexNav.this.setTitle(newPage.getDescription());
 
                 //update our nav view
                 jListNavigation.setSelectedValue(newPage.getTitle(), true);
             }
 
-            public void onPageChanging(WizardPage newPage,
-                    List<WizardPage> path) {
-                log.fine("settings: " + wc.getSettings());
+            @Override
+            public void onPageChanging(WizardPage newPage, List<WizardPage> path) {
             }
         });
 
@@ -251,9 +211,41 @@ public class WizardTestNavBar extends javax.swing.JDialog {
             new WizardPage("Three", "Third Page") {
                 {
                     add(new JLabel("Three!"));
+                    JButton btn = new JButton("skip");
+                    btn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            getController().visitPage(pages[4]);
+                        }
+                    });
+                    add(btn);
                     setBackground(Color.green);
                 }
-
+  
+                /**
+                 * here we are dynamically injecting a new page into the workflow
+                 * @param path
+                 * @param settings 
+                 */
+                public void rendering(List<WizardPage> path, WizardSettings settings) {
+                    super.rendering(path, settings);
+                    /*
+                    getController().visitPage(new WizardPage("Step 3A", "injected") {
+                        {
+                            add(new JLabel("3A!"));
+                            setBackground(Color.BLUE);
+                        }
+                    });*/
+                    //definitely not right.
+                    /*
+                    getController().getPath().add(new WizardPage("Step 3A", "injected") {
+                        {
+                            add(new JLabel("3A!"));
+                            setBackground(Color.BLUE);
+                        }
+                    });*/
+                    
+                }
             },
             new WizardPage("Four", "Third Page") {
                 {
@@ -278,6 +270,14 @@ public class WizardTestNavBar extends javax.swing.JDialog {
             new WizardPage("Final", "Final Page") {
                 {
                     add(new JLabel("And we're done!"));
+                    JButton btn = new JButton("Start again?");
+                    btn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            getController().visitPage(pages[0]);
+                        }
+                    });
+                    add(btn);
                     
                 }
 
@@ -290,6 +290,7 @@ public class WizardTestNavBar extends javax.swing.JDialog {
                     super.rendering(path, settings);
                     setFinishEnabled(true);
                     setNextEnabled(false);
+                    
                 }
             }
         };
@@ -302,20 +303,22 @@ public class WizardTestNavBar extends javax.swing.JDialog {
                 WizardSettings settings) {
             log.fine("creating page " + path.size());
 
-            // Get the next page to display.  The path is the list of all wizard
-            // pages that the user has proceeded through from the start of the
-            // wizard, so we can easily see which step the user is on by taking
-            // the length of the path.  This makes it trivial to return the next
-            // WizardPage:
-            WizardPage page = pages[path.size()];
-
-            // if we wanted to, we could use the WizardSettings object like a
-            // Map<String, Object> to change the flow of the wizard pages.
-            // In fact, we can do arbitrarily complex computation to determine
-            // the next wizard page.
-            log.fine("Returning page: " + page);
-            return page;
+           
+            if (path.isEmpty())
+                return pages[0];
+            
+            // in this example, we have a panel that will skip a step in the wizard
+            // since it's skipping, we need to calculate what the next panel should be
+            // based on the last item viewed.
+            
+            WizardPage lastViewed = path.get(path.size()-1);
+            for (int i=0; i < pages.length; i++) {
+                if (pages[i] == lastViewed) {
+                    log.fine("Returning page: " + pages[i+1]);
+                    return pages[i+1];
+                }
+            }
+            throw new RuntimeException();
         }
-
     }
 }

@@ -90,7 +90,6 @@ public class WizardTest2 extends JDialog {
 
         public void onPageChanging(WizardPage newPage, List<WizardPage> path) {
             log.debug("settings: "+wc.getSettings());
-            WizardTest2.this.dispose();
         }
       });
       

@@ -4,3 +4,4 @@
 CJWizard.iml
 /cjwizard/target/
 /cjwizard-demo/target/
+*.versionsBackup

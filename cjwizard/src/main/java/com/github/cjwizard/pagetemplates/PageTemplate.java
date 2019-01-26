@@ -41,7 +41,7 @@ public abstract class PageTemplate extends JPanel {
    /**
     * Registers a WizardController with this class.
     * 
-    * @param controller
+    * @param controller a reference to the controller
     */
    public void registerController(WizardController controller) {
       _controller = controller;

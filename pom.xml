@@ -41,7 +41,7 @@
     </developers>
     <scm>
         <url>https://github.com/cjwizard/cjwizard/</url>
-        <developerConnection>scm:git:https://github.com/cjwizard/cjwizard/;publish=1</developerConnection>
+        <developerConnection>scm:git:https://github.com/cjwizard/cjwizard.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
@@ -59,6 +59,10 @@
             <name>cjwizard-CJWizard</name>
             <url>https://api.bintray.com/maven/cjwizard/CJWizard/cjwizard/;publish=1</url>
         </repository>
+        <site>
+            <id>website</id>
+            <url>https://cjwizard.github.io/</url>
+        </site>
     </distributionManagement>
 
     <prerequisites>
@@ -115,19 +119,102 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.10.4</version>
+                    <version>3.0.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.3</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+             <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>3.0.4</version>
+                </plugin>
+        </plugins>
     </build>
     <modules>
         <module>cjwizard</module>
         <module>cjwizard-demo</module>
     </modules>
 
+    <reporting>
+        <plugins>
+        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+                <!--
+                    This is awesome, but requires graphviz/dot on the path
+                <configuration>
+                    <aggregate>false</aggregate>
+                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                    <docletArtifact>
+                        <groupId>org.umlgraph</groupId>
+                        <artifactId>umlgraph</artifactId>
+                        <version>5.6.6</version>
+
+                    </docletArtifact>
+                </configuration>
+                    -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>javancss-maven-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+            <!--
+            adds the source code as html browsable site-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+            
+           
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0</version>
+            </plugin>
+             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.4</version>
+            </plugin>
+           
+             <!--
+                also requires graphviz 
+            <plugin>
+                <groupId>org.kuali.maven.plugins</groupId>
+                <artifactId>graph-maven-plugin</artifactId>
+                <version>1.2.3</version>
+            </plugin>
+                        -->
+        </plugins>
+    </reporting>
 </project>

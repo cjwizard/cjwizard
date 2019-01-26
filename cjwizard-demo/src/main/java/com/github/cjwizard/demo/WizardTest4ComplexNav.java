@@ -27,7 +27,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -45,7 +47,7 @@ public class WizardTest4ComplexNav extends javax.swing.JDialog {
     /**
      * Commons logging log instance
      */
-    private final Logger log = Logger.getLogger(WizardTest.class.getSimpleName());
+    private final Logger log = LoggerFactory.getLogger(WizardTest.class.getSimpleName());
     final private TestFactory testFactory = new TestFactory();
 
     private javax.swing.JList<String> jListNavigation;
@@ -53,6 +55,8 @@ public class WizardTest4ComplexNav extends javax.swing.JDialog {
 
     /**
      * Creates new form WizardNavBar
+     * @param parent parent
+     * @param modal true/false as a modal
      */
     public WizardTest4ComplexNav(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -82,19 +86,19 @@ public class WizardTest4ComplexNav extends javax.swing.JDialog {
         wc.addWizardListener(new WizardListener() {
             @Override
             public void onCanceled(List<WizardPage> path, WizardSettings settings) {
-                log.fine("settings: " + wc.getSettings());
+                log.info("settings: " + wc.getSettings());
                 WizardTest4ComplexNav.this.dispose();
             }
 
             @Override
             public void onFinished(List<WizardPage> path, WizardSettings settings) {
-                log.fine("settings: " + wc.getSettings());
+                log.info("settings: " + wc.getSettings());
                 WizardTest4ComplexNav.this.dispose();
             }
 
             @Override
             public void onPageChanged(WizardPage newPage, List<WizardPage> path) {
-                log.fine("settings: " + wc.getSettings());
+                log.info("settings: " + wc.getSettings());
                 // Set the dialog title to match the description of the new page:
                 WizardTest4ComplexNav.this.setTitle(newPage.getDescription());
 
@@ -301,7 +305,7 @@ public class WizardTest4ComplexNav extends javax.swing.JDialog {
         @Override
         public WizardPage createPage(List<WizardPage> path,
                 WizardSettings settings) {
-            log.fine("creating page " + path.size());
+            log.info("creating page " + path.size());
 
            
             if (path.isEmpty())
@@ -314,7 +318,7 @@ public class WizardTest4ComplexNav extends javax.swing.JDialog {
             WizardPage lastViewed = path.get(path.size()-1);
             for (int i=0; i < pages.length; i++) {
                 if (pages[i] == lastViewed) {
-                    log.fine("Returning page: " + pages[i+1]);
+                    log.info("Returning page: " + pages[i+1]);
                     return pages[i+1];
                 }
             }

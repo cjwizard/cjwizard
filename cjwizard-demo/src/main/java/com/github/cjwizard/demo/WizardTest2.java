@@ -49,15 +49,7 @@ public class WizardTest2 extends JDialog {
     */
    private final Logger log = LoggerFactory.getLogger(WizardTest.class);
    
-   /**
-    * @param args
-    */
-   public static void main(String[] args) {
-      // create the dialog, and show it:
-      WizardTest2 test = new WizardTest2();
-      test.setVisible(true);
-   }
-   
+
    public WizardTest2(){
       // first, build the wizard.  The TestFactory defines the
       // wizard content and behavior.

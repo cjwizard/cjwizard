@@ -25,8 +25,9 @@ public class ExceptionUtilities {
     * Checks to see if obj is null, and if so throws an
     * IllegalArgumentException with the given message.
     * 
-    * @param obj
-    * @param msg
+    * @param obj the object to check
+    * @param msg an error message
+    * @throws IllegalArgumentException if the referenced object is null
     */
    public static void checkNull(Object obj, String msg) {
       if (null == obj)

@@ -16,8 +16,9 @@ package com.github.cjwizard.demo;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -26,6 +27,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author AO
  */
 public class Main extends javax.swing.JDialog {
+   private final static Logger log = LoggerFactory.getLogger(Main.class);
 
     /**
      * Creates new form Main
@@ -178,13 +180,13 @@ public class Main extends javax.swing.JDialog {
                 }
             });
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            log.warn(ex.getMessage(),ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            log.warn(ex.getMessage(),ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            log.warn(ex.getMessage(),ex);
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            log.warn(ex.getMessage(),ex);
         }
     }
 

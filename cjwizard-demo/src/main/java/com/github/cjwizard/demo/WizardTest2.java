@@ -96,7 +96,7 @@ public class WizardTest2 extends JDialog {
     * Implementation of PageFactory to generate the wizard pages needed
     * for the wizard.
     */
-   private class TestFactory extends APageFactory{
+   private class TestFactory extends AbstractPageFactory{
       
       /* (non-Javadoc)
        * @see com.github.cjwizard.PageFactory#createPage(java.util.List, com.github.cjwizard.WizardSettings)

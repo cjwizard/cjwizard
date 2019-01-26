@@ -29,7 +29,7 @@ import java.util.List;
  * @version 20140929
  *
  */
-public abstract class APageFactory implements PageFactory {
+public abstract class AbstractPageFactory implements PageFactory {
 
    /*
     * (non-Javadoc)

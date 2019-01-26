@@ -15,7 +15,7 @@
  */
 package com.github.cjwizard.demo.complex2;
 
-import com.github.cjwizard.APageFactory;
+import com.github.cjwizard.AbstractPageFactory;
 import com.github.cjwizard.WizardPage;
 import com.github.cjwizard.WizardSettings;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author AO
  */
-public class CustomWizardFactory extends APageFactory {
+public class CustomWizardFactory extends AbstractPageFactory {
 
     private final Logger log = LoggerFactory.getLogger(CustomWizardFactory.class.getSimpleName());
 

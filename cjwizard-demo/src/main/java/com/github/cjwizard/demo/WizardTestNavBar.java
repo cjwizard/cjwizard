@@ -14,7 +14,7 @@
  */
 package com.github.cjwizard.demo;
 
-import com.github.cjwizard.APageFactory;
+import com.github.cjwizard.AbstractPageFactory;
 import com.github.cjwizard.StackWizardSettings;
 import com.github.cjwizard.WizardContainer;
 import com.github.cjwizard.WizardListener;
@@ -165,7 +165,7 @@ public class WizardTestNavBar extends javax.swing.JDialog {
      * Implementation of PageFactory to generate the wizard pages needed for the
      * wizard.
      */
-    private class TestFactory extends APageFactory {
+    private class TestFactory extends AbstractPageFactory {
 
         // To keep things simple, we'll just create an array of wizard pages:
         private final WizardPage[] pages = {

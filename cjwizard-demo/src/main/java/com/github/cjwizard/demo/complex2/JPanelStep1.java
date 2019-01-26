@@ -13,33 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cjwizard.demo.complex;
+package com.github.cjwizard.demo.complex2;
 
 import com.github.cjwizard.WizardPage;
-import com.github.cjwizard.WizardSettings;
-import java.util.List;
 
 /**
  *
  * @author AO
  */
-public class JPanelStep5 extends WizardPage {
+public class JPanelStep1 extends WizardPage {
 
     /**
      * Creates new form JPanelStep1
      */
-    public JPanelStep5() {
-        super("Step 6", "Finished");
+    public JPanelStep1() {
+        super("Step 1", "Intro");
         initComponents();
-
-    }
-
-    @Override
-    public void rendering(List<WizardPage> path, WizardSettings settings) {
-        super.rendering(path, settings);
-        setFinishEnabled(true);
+        setFinishEnabled(false);
         setNextEnabled(true);
-
     }
 
     /**
@@ -52,12 +43,9 @@ public class JPanelStep5 extends WizardPage {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("<html>Step 5<br></html>");
-
-        jLabel2.setText("You are at the end");
+        jLabel1.setText("<html>Step 1</html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,11 +53,7 @@ public class JPanelStep5 extends WizardPage {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -77,14 +61,11 @@ public class JPanelStep5 extends WizardPage {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

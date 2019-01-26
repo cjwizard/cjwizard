@@ -53,6 +53,8 @@ public class WizardTestNavBar extends javax.swing.JDialog {
 
     /**
      * Creates new form WizardNavBar
+     * @param parent parent
+     * @param modal true/false for a modal
      */
     public WizardTestNavBar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

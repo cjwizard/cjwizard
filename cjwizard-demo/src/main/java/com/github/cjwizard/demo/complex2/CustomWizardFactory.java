@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cjwizard.demo.complex;
+package com.github.cjwizard.demo.complex2;
 
 import com.github.cjwizard.APageFactory;
 import com.github.cjwizard.WizardPage;
@@ -41,13 +41,17 @@ public class CustomWizardFactory extends APageFactory {
      * some spacing with the names of all the wizard pages.
      */
     protected final WizardPage[] pages = {
-        new JPanelStep1(),
-        new JPanelStep2(),
-        new JPanelStep3(),
-        new JPanelStep3A(),
-        new JPanelStep3B(),
-        new JPanelStep4(),
-        new JPanelStep5()
+        new JPanelStep1(),      //0
+        new JPanelStep2(),      //1
+        new JPanelStep3(),      //2
+        new JPanelStep3A(),     //3
+        new JPanelStep3B(),     //4
+        new JPanelStep3C(),     //5
+        new JPanelStep3C1(),    //6
+        new JPanelStep3C2(),    //7
+        new JPanelStep3C3(),    //8
+        new JPanelStep4(),      //9
+        new JPanelStep5()       //10
 
     };
 
@@ -63,20 +67,36 @@ public class CustomWizardFactory extends APageFactory {
         WizardPage lastPage = path.get(path.size() - 1);
 
         if (lastPage instanceof JPanelStep3) {
-            if (((JPanelStep3) lastPage).isIsChoiceA()) {
-                return pages[3];
-            } else {
-                return pages[4];
+            switch (((JPanelStep3) lastPage).getChoice()) {
+                case A:
+                    return pages[3];
+                case B:
+                    return pages[4];
+                case C:
+                    return pages[5];
             }
+            
+        }
+        if (lastPage instanceof JPanelStep3C) {
+            return pages[6];
+        }
+        if (lastPage instanceof JPanelStep3C1) {
+            return pages[7];
+        }
+        if (lastPage instanceof JPanelStep3C2) {
+            return pages[8];
+        }
+        if (lastPage instanceof JPanelStep3C3) {
+            return pages[9];
         }
         if (lastPage instanceof JPanelStep3B) {
-            return pages[5];
+            return pages[9];
         }
         if (lastPage instanceof JPanelStep3A) {
-            return pages[5];
+            return pages[9];
         }
         if (lastPage instanceof JPanelStep4) {
-            return pages[6];
+            return pages[10];
         }
         if (lastPage instanceof JPanelStep5) {
             return pages[0];

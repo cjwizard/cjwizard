@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cjwizard.demo.complex;
+package com.github.cjwizard.demo.complex2;
 
 import com.github.cjwizard.WizardPage;
 import com.github.cjwizard.WizardSettings;

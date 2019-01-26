@@ -14,9 +14,11 @@
  */
 package com.github.cjwizard.demo;
 
-import com.github.cjwizard.demo.complex.ComplexNavMain;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.util.List;
+import javax.swing.JFrame;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,13 +30,14 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author AO
  */
 public class Main extends javax.swing.JDialog {
-   private final static Logger log = LoggerFactory.getLogger(Main.class);
+    public static final String TITLE="CJ Wizard Demos";    //TODO i18n
+    private final static Logger log = LoggerFactory.getLogger(Main.class);
 
     /**
      * Creates new form Main
      */
-    public Main(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Main() {
+        super(new DummyFrame(TITLE));
         initComponents();
     }
 
@@ -53,6 +56,7 @@ public class Main extends javax.swing.JDialog {
         jButtonNavBar = new javax.swing.JButton();
         jButtonNavBar1 = new javax.swing.JButton();
         jButtonNavBar2 = new javax.swing.JButton();
+        jButtonNavBar3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -93,6 +97,13 @@ public class Main extends javax.swing.JDialog {
             }
         });
 
+        jButtonNavBar3.setText("Nav bar with complex worlflows 2");
+        jButtonNavBar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNavBar3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +118,8 @@ public class Main extends javax.swing.JDialog {
                     .addComponent(jButtonDemo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonNavBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonNavBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonNavBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonNavBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNavBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,16 +137,18 @@ public class Main extends javax.swing.JDialog {
                 .addComponent(jButtonNavBar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonNavBar2)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonNavBar3)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDemo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDemo1ActionPerformed
-        // TODO add your handling code here:
+
         WizardTest test = new WizardTest();
-        test.setSize(new Dimension(400, 300));
+        test.setSize(new Dimension(600, 300));
         test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
         test.setLocationRelativeTo(null);
         test.setVisible(true);
@@ -142,40 +156,49 @@ public class Main extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonDemo1ActionPerformed
 
     private void jButtonDemo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDemo2ActionPerformed
-        // TODO add your handling code here:
+
         WizardTest2 test = new WizardTest2();
-        test.setSize(new Dimension(400, 300));
+        test.setSize(new Dimension(600, 300));
         test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
         test.setLocationRelativeTo(null);
         test.setVisible(true);
     }//GEN-LAST:event_jButtonDemo2ActionPerformed
 
     private void jButtonNavBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBarActionPerformed
-        // TODO add your handling code here:
-         WizardTestNavBar test = new WizardTestNavBar(new javax.swing.JFrame(),true);
-        test.setSize(new Dimension(500, 300));
+
+        WizardTestNavBar test = new WizardTestNavBar(new javax.swing.JFrame(), true);
+        test.setSize(new Dimension(600, 300));
         test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
         test.setLocationRelativeTo(null);
         test.setVisible(true);
     }//GEN-LAST:event_jButtonNavBarActionPerformed
 
     private void jButtonNavBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBar1ActionPerformed
-         // TODO add your handling code here:
-        WizardTest4ComplexNav test = new WizardTest4ComplexNav(new javax.swing.JFrame(),true);
-        test.setSize(new Dimension(500, 300));
+
+        WizardTest4ComplexNav test = new WizardTest4ComplexNav(new javax.swing.JFrame(), true);
+        test.setSize(new Dimension(600, 300));
         test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
         test.setLocationRelativeTo(null);
         test.setVisible(true);
     }//GEN-LAST:event_jButtonNavBar1ActionPerformed
 
     private void jButtonNavBar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBar2ActionPerformed
-        // TODO add your handling code here:
-        ComplexNavMain test = new ComplexNavMain(new javax.swing.JFrame(),true);
-        test.setSize(new Dimension(500, 300));
+
+        com.github.cjwizard.demo.complex.ComplexNavMain test = new com.github.cjwizard.demo.complex.ComplexNavMain(new javax.swing.JFrame(), true);
+        test.setSize(new Dimension(600, 300));
         test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
         test.setLocationRelativeTo(null);
         test.setVisible(true);
     }//GEN-LAST:event_jButtonNavBar2ActionPerformed
+
+    private void jButtonNavBar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBar3ActionPerformed
+
+        com.github.cjwizard.demo.complex2.ComplexNavMain test = new com.github.cjwizard.demo.complex2.ComplexNavMain(new javax.swing.JFrame(), true);
+        test.setSize(new Dimension(600, 300));
+        test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
+        test.setLocationRelativeTo(null);
+        test.setVisible(true);
+    }//GEN-LAST:event_jButtonNavBar3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,27 +210,42 @@ public class Main extends javax.swing.JDialog {
             /* Create and display the dialog */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    Main dialog = new Main(new javax.swing.JFrame(), true);
+                    Main dialog = new Main();
                     dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosing(java.awt.event.WindowEvent e) {
                             System.exit(0);
                         }
                     });
-                    dialog.setTitle("CJ Wizard Demos");
+                    dialog.setTitle(TITLE);
                     dialog.pack();
                     dialog.setLocationRelativeTo(null);
                     dialog.setVisible(true);
                 }
             });
         } catch (ClassNotFoundException ex) {
-            log.warn(ex.getMessage(),ex);
+            log.warn(ex.getMessage(), ex);
         } catch (InstantiationException ex) {
-            log.warn(ex.getMessage(),ex);
+            log.warn(ex.getMessage(), ex);
         } catch (IllegalAccessException ex) {
-            log.warn(ex.getMessage(),ex);
+            log.warn(ex.getMessage(), ex);
         } catch (UnsupportedLookAndFeelException ex) {
-            log.warn(ex.getMessage(),ex);
+            log.warn(ex.getMessage(), ex);
+        }
+    }
+
+    /**
+     * makes the jDialog show up in the task bar
+     * see
+     * https://stackoverflow.com/questions/8006502/show-jdialog-on-windows-taskbar
+     */
+    private static class DummyFrame extends JFrame {
+
+        DummyFrame(String title) {
+            super(title);
+            setUndecorated(true);
+            setVisible(true);
+            setLocationRelativeTo(null);
         }
     }
 
@@ -217,6 +255,7 @@ public class Main extends javax.swing.JDialog {
     private javax.swing.JButton jButtonNavBar;
     private javax.swing.JButton jButtonNavBar1;
     private javax.swing.JButton jButtonNavBar2;
+    private javax.swing.JButton jButtonNavBar3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

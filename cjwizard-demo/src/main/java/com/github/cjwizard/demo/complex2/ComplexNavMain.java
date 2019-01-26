@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cjwizard.demo.complex;
+package com.github.cjwizard.demo.complex2;
 
 import com.github.cjwizard.demo.*;
 import com.github.cjwizard.StackWizardSettings;
@@ -48,7 +48,7 @@ public class ComplexNavMain extends javax.swing.JDialog {
 
     /**
      * Creates new form WizardNavBar
-     * @param parent paren
+     * @param parent parent
      * @param modal modal
      */
     public ComplexNavMain(java.awt.Frame parent, boolean modal) {
@@ -93,7 +93,7 @@ public class ComplexNavMain extends javax.swing.JDialog {
             public void onPageChanged(WizardPage newPage, List<WizardPage> path) {
                 log.info("settings: " + wc.getSettings());
                 // Set the dialog title to match the description of the new page:
-                ComplexNavMain.this.setTitle(newPage.getTitle());
+                ComplexNavMain.this.setTitle(newPage.getName());
 
                 //update our nav view
                 jListNavigation.setSelectedValue(newPage.getTitle(), true);

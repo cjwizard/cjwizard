@@ -14,6 +14,7 @@
  */
 package com.github.cjwizard.demo;
 
+import com.github.cjwizard.demo.complex.ComplexNavMain;
 import java.awt.Dialog;
 import java.awt.Dimension;
 
@@ -51,6 +52,7 @@ public class Main extends javax.swing.JDialog {
         jButtonDemo1 = new javax.swing.JButton();
         jButtonNavBar = new javax.swing.JButton();
         jButtonNavBar1 = new javax.swing.JButton();
+        jButtonNavBar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,6 +86,13 @@ public class Main extends javax.swing.JDialog {
             }
         });
 
+        jButtonNavBar2.setText("Nav bar with complex worlflows");
+        jButtonNavBar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNavBar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +106,8 @@ public class Main extends javax.swing.JDialog {
                         .addGap(0, 254, Short.MAX_VALUE))
                     .addComponent(jButtonDemo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonNavBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonNavBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonNavBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNavBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,7 +123,9 @@ public class Main extends javax.swing.JDialog {
                 .addComponent(jButtonNavBar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonNavBar1)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonNavBar2)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,12 +161,21 @@ public class Main extends javax.swing.JDialog {
 
     private void jButtonNavBar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBar1ActionPerformed
          // TODO add your handling code here:
-         WizardTest4ComplexNav test = new WizardTest4ComplexNav(new javax.swing.JFrame(),true);
+        WizardTest4ComplexNav test = new WizardTest4ComplexNav(new javax.swing.JFrame(),true);
         test.setSize(new Dimension(500, 300));
         test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
         test.setLocationRelativeTo(null);
         test.setVisible(true);
     }//GEN-LAST:event_jButtonNavBar1ActionPerformed
+
+    private void jButtonNavBar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavBar2ActionPerformed
+        // TODO add your handling code here:
+        ComplexNavMain test = new ComplexNavMain(new javax.swing.JFrame(),true);
+        test.setSize(new Dimension(500, 300));
+        test.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
+        test.setLocationRelativeTo(null);
+        test.setVisible(true);
+    }//GEN-LAST:event_jButtonNavBar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +216,7 @@ public class Main extends javax.swing.JDialog {
     private javax.swing.JButton jButtonDemo2;
     private javax.swing.JButton jButtonNavBar;
     private javax.swing.JButton jButtonNavBar1;
+    private javax.swing.JButton jButtonNavBar2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

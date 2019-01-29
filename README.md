@@ -10,7 +10,7 @@ I also found it to be extremely cumbersome to define complex wizards that change
 
 That said, I learned a lot from the Java Wizard API, and some of those ideas have been incorporated into CJWizards (I had to call it something.)
 
-Take a look at the [FAQ](docs/FAQ.md) and [QuickStartGuide](src/site/markdown/quickstart.md) to get going, and send me questions if you have any.
+Take a look at the [FAQ](src/site/markdown/FAQ.md) and [QuickStartGuide](src/site/markdown/quickstart.md) to get going, and send me questions if you have any.
 
 ## Screenshots ##
 
@@ -36,7 +36,7 @@ For gradle and ivy users: See "build settings" in https://bintray.com/cjwizard/C
 
 ## Documentation ##
 
-See [docs folder](./docs)
+See [docs folder](./src/site/markdown)
 
 ## Requirements ##
 

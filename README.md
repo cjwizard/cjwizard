@@ -16,7 +16,7 @@ Take a look at the [FAQ](src/site/markdown/FAQ.md) and [QuickStartGuide](src/sit
 
 This shows CJWizard in action, with a custom PageTemplate (drawing the list of dialog pages on the left) that wraps around a !TitledPageTemplate (drawing the underlined title of the !WizardPage).  The Windows L&F was used to make it look like a native app.  (The Finish button is enabled because the surrounding app is robust to missing data, and allows for the user to come back to the wizard at a later date, if needed.  Generally, and by default, the Finish button is disabled if it is not explicitly enabled, which often happens in the `render()` method of the last !WizardPage)
 
-![sample dialog](./src/site/images/cjwizard1.png)
+![sample dialog](./src/site/resources/images/cjwizard1.png)
 
 ## Maven coordinates / JCenter  ##
 

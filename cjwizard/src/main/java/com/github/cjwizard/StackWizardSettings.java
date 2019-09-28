@@ -136,6 +136,7 @@ public class StackWizardSettings implements WizardSettings {
     *           The key of the setting.
     * @return The value of the setting or null if not found.
     */
+   @Override
    public Object get(String key) {
       Object value = null;
 
@@ -146,18 +147,7 @@ public class StackWizardSettings implements WizardSettings {
       return value;
    }
 
-   /*
-    * (non-Javadoc)
-    * 
-    * @see java.util.Map#get(java.lang.Object)
-    */
-   @Override
-   public Object get(Object key) {
-      if (key instanceof String) {
-         return get((String) key);
-      }
-      return null;
-   }
+   
 
    /**
     * Gets the current page in the stack (without removing it).
@@ -176,6 +166,7 @@ public class StackWizardSettings implements WizardSettings {
     * (non-Javadoc)
     * @see java.lang.Object#toString()
     */
+   @Override
    public String toString() {
       StringBuilder str = new StringBuilder("WizardSettings: ");
 
@@ -198,24 +189,7 @@ public class StackWizardSettings implements WizardSettings {
       newPage("");
    }
 
-   /*
-    * (non-Javadoc)
-    * 
-    * @see java.util.Map#containsKey(java.lang.Object)
-    */
-   @Override
-   public boolean containsKey(Object key) {
-
-      Iterator<IdMapTuple> iter = this._pageStack.iterator();
-      boolean found = false;
-
-      while (iter.hasNext() && !found) {
-         found = iter.next().map.containsKey(key);
-      }
-
-      return found;
-
-   }
+  
 
    /*
     * (non-Javadoc)
@@ -233,15 +207,7 @@ public class StackWizardSettings implements WizardSettings {
       return containsVal;
    }
 
-   /**
-    * Not supported.
-    */
-   @Override
-   public Set<java.util.Map.Entry<String, Object>> entrySet() {
-      // TODO auto-generated method stub
-      throw new UnsupportedOperationException();
-   }
-
+   
    /*
     * (non-Javadoc)
     * 
@@ -279,7 +245,7 @@ public class StackWizardSettings implements WizardSettings {
     * 
     */
    @Override
-   public Object remove(Object key) {
+   public Object remove(String key) {
 
       return current().map.remove(key);
 
@@ -312,14 +278,7 @@ public class StackWizardSettings implements WizardSettings {
       return keySet().size();
    }
 
-   /**
-    * Not supported.
-    */
-   @Override
-   public Collection<Object> values() {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException();
-   }
+ 
 
    private class IdMapTuple {
       public final String id;

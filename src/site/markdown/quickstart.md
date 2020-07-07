@@ -1,7 +1,7 @@
 # Introduction #
 
 The best approach (for now) is to look at the 
-[WizardTest class](../src/main/java/com/github/cjwizard/WizardTest.java) class and see how it creates a simple wizard.  That class is well commented, and uses the core set of features in CJWizard.
+[WizardTest class](../../../cjwizard-demo/src/main/java/com/github/cjwizard/demo/WizardTest.java) class and see how it creates a simple wizard.  That class is well commented, and uses the core set of features in CJWizard.
 
 ## Quick Start ##
 

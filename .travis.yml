@@ -11,6 +11,6 @@ jdk:
   - oraclejdk11
   
 script:
-  - mvn -T 1C clean install
-  - mvn -T 1C site
-  - mvn -T 1C site:stage
+  - mvn clean install
+  - mvn site
+  - mvn site:stage

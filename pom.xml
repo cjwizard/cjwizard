@@ -1,220 +1,253 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.cjwizard</groupId>
-    <artifactId>cjwizard-parent</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
-    <name>CJWizard Parent</name>
-    <description>CJWizard is an API for creating wizard dialogs in Java. This library was spurred by my use of the Java Wizard library at Java.net (https://wizard.dev.java.net/). That library offers a good framework for simple wizards, but it dictates a great deal of what you can do--justified by the java usability guidelines. However, I don't believe all the restrictions actually are justified by those guidelines. For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it). Making this area interactive, as a global navigation tool, is non-trivial. I also found it to be extremely cumbersome to define complex wizards that change their branching behavior at runtime. Generally, I found the Java Wizard API to be difficult to use and at times contradictory. That said, I learned a lot from the Java Wizard API, and some of those ideas have been incorporated into CJWizards (I had to call it something.)</description>
-    <packaging>pom</packaging>
-    
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
-
-    <url>http://cjwizard.com</url>
-    <developers>
-        <developer>
-            <id>creswick</id>
-            <url>https://github.com/creswick</url>
-        </developer>
-        <developer>
-            <id>PhoneixS</id>
-            <url>https://github.com/PhoneixS</url>
-        </developer>
-        <developer>
-            <id>guerda</id>
-            <url>https://github.com/guerda</url>
-        </developer>
-        <developer>
-            <id>Petikoch</id>
-            <url>https://github.com/Petikoch</url>
-        </developer>
-        <developer>
-            <id>stevesobol</id>
-            <url>https://github.com/stevesobol</url>
-        </developer>
-    </developers>
-    <scm>
-        <url>https://github.com/cjwizard/cjwizard/</url>
-        <developerConnection>scm:git:https://github.com/cjwizard/cjwizard.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-    <issueManagement>
-        <system>Github Issue Tracker</system>
-        <url>https://github.com/cjwizard/cjwizard/issues</url>
-    </issueManagement>
-    <ciManagement>
-        <system>Travis CI</system>
-        <url>https://travis-ci.org/cjwizard/cjwizard</url>
-    </ciManagement>
-
-    <distributionManagement>
-        <repository>
-            <id>bintray-cjwizard-CJWizard</id>
-            <name>cjwizard-CJWizard</name>
-            <url>https://api.bintray.com/maven/cjwizard/CJWizard/cjwizard/;publish=1</url>
-        </repository>
-        <site>
-            <id>website</id>
-            <url>https://cjwizard.github.io/</url>
-        </site>
-    </distributionManagement>
-
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <encoding>${project.build.sourceEncoding}</encoding>
-        <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.cjwizard</groupId>
+	<artifactId>cjwizard-parent</artifactId>
+	<version>1.0.9.1</version>
+	<name>CJWizard Parent</name>
+	<description>CJWizard is an API for creating wizard dialogs in Java. This library was spurred by my use of the Java Wizard library at Java.net (https://wizard.dev.java.net/). That library offers a good framework for simple wizards, but it dictates a great deal of what you can do--justified by the java usability guidelines. However, I don't believe all the restrictions actually are justified by those guidelines. For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it). Making this area interactive, as a global navigation tool, is non-trivial. I also found it to be extremely cumbersome to define complex wizards that change their branching behavior at runtime. Generally, I found the Java Wizard API to be difficult to use and at times contradictory. That said, I learned a lot from the Java Wizard API, and some of those ideas have been incorporated into CJWizards (I had to call it something.)</description>
+	<packaging>pom</packaging>
+	
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
 
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.25</version>
-            </dependency>
 
-            <!-- Test Scope -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.13.1</version>
-                <scope>test</scope>
-            </dependency>
+	<url>http://cjwizard.com</url>
+	<developers>
+		<developer>
+			<id>creswick</id>
+			<url>https://github.com/creswick</url>
+		</developer>
+		<developer>
+			<id>PhoneixS</id>
+			<url>https://github.com/PhoneixS</url>
+		</developer>
+		<developer>
+			<id>guerda</id>
+			<url>https://github.com/guerda</url>
+		</developer>
+		<developer>
+			<id>Petikoch</id>
+			<url>https://github.com/Petikoch</url>
+		</developer>
+		<developer>
+			<id>stevesobol</id>
+			<url>https://github.com/stevesobol</url>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/cjwizard/cjwizard/</url>
+		<developerConnection>scm:git:https://github.com/cjwizard/cjwizard.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+	<issueManagement>
+		<system>Github Issue Tracker</system>
+		<url>https://github.com/cjwizard/cjwizard/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/cjwizard/cjwizard</url>
+	</ciManagement>
 
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-simple</artifactId>
-                <version>1.7.25</version>
-            </dependency>
+	<distributionManagement>
+		<repository>
+			<id>lobosstudios-nexus</id>
+			<name>cjwizard-CJWizard</name>
+			<url>https://repos.lobosstudios.com/repository/java-dev/</url>
+		</repository>
+		<site>
+			<id>website</id>
+			<url>https://cjwizard.com/</url>
+		</site>
+	</distributionManagement>
 
-        </dependencies>
-    </dependencyManagement>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.0</version>
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
 
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.0.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.3</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.7.1</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
-             <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>3.0.4</version>
-                </plugin>
-        </plugins>
-    </build>
-    <modules>
-        <module>cjwizard</module>
-        <module>cjwizard-demo</module>
-    </modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<encoding>${project.build.sourceEncoding}</encoding>
+		<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
 
-    <reporting>
-        <plugins>
-        <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <!--
-                    This is awesome, but requires graphviz/dot on the path
-                <configuration>
-                    <aggregate>false</aggregate>
-                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                    <docletArtifact>
-                        <groupId>org.umlgraph</groupId>
-                        <artifactId>umlgraph</artifactId>
-                        <version>5.6.6</version>
 
-                    </docletArtifact>
-                </configuration>
-                    -->
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
-            </plugin>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.25</version>
+			</dependency>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>javancss-maven-plugin</artifactId>
-                <version>2.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
-            </plugin>
-            <!--
-            adds the source code as html browsable site-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
-            </plugin>
-            
-           
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jdepend-maven-plugin</artifactId>
-                <version>2.0</version>
-            </plugin>
-             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
-            </plugin>
-           
-             <!--
-                also requires graphviz 
-            <plugin>
-                <groupId>org.kuali.maven.plugins</groupId>
-                <artifactId>graph-maven-plugin</artifactId>
-                <version>1.2.3</version>
-            </plugin>
-                        -->
-        </plugins>
-    </reporting>
+			<!-- Test Scope -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13.1</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>1.7.25</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.6.0</version>
+
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			 <plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>3.0.4</version>
+				</plugin>
+				<!-- Ignore (skip) Maven's built-in deployment plugin... -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+                                        <version>3.0.0-M2</version>
+					<configuration>
+					   <skip>true</skip>
+					</configuration>
+				 </plugin>
+				 <!-- because we're deploying to Nexus, and we're going -->
+				 <!-- to use the Nexus plugin instead -->
+				 <plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.5.1</version>
+					<executions>
+					   <execution>
+						  <id>default-deploy</id>
+						  <phase>deploy</phase>
+						  <goals>
+							 <goal>deploy</goal>
+						  </goals>
+					   </execution>
+					</executions>
+					<configuration>
+					   <serverId>lobosstudios-nexus</serverId>
+					   <nexusUrl>https://repos.lobosstudios.com/nexus/</nexusUrl>
+					   <skipStaging>true</skipStaging>
+					</configuration>
+				 </plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>cjwizard</module>
+		<module>cjwizard-demo</module>
+	</modules>
+	
+	<reporting>
+		<plugins>
+		<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				<!--
+					This is awesome, but requires graphviz/dot on the path
+				<configuration>
+					<aggregate>false</aggregate>
+					<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+					<docletArtifact>
+						<groupId>org.umlgraph</groupId>
+						<artifactId>umlgraph</artifactId>
+						<version>5.6.6</version>
+
+					</docletArtifact>
+				</configuration>
+					-->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>javancss-maven-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+			<!--
+			adds the source code as html browsable site-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			
+		   
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0</version>
+			</plugin>
+			 <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.4</version>
+			</plugin>
+		   
+			 <!--
+				also requires graphviz 
+			<plugin>
+				<groupId>org.kuali.maven.plugins</groupId>
+				<artifactId>graph-maven-plugin</artifactId>
+				<version>1.2.3</version>
+			</plugin>
+						-->
+		</plugins>
+	</reporting>
 </project>

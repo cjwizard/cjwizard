@@ -1,51 +1,81 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/cjwizard/cjwizard.svg?branch=master)](https://travis-ci.org/cjwizard/cjwizard)
 
+What:
 
 CJWizard is a library for creating swing based wizard dialogs in Java.
 
-This library was spurred by my use of the Java Wizard library at Java.net (which appears to be gone now; it was previously at https://wizard.dev.java.net/).  That library offers a good framework for simple wizards, but it dictates a great deal of what you can do--justified by the java usability guidelines.  However, I don't believe all the restrictions actually are justified by those guidelines.  For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it).  Making this area interactive, as a global navigation tool, is non-trivial.
+Why:
 
-I also found it to be extremely cumbersome to define complex wizards that change their branching behavior at runtime.  Generally, I found the Java Wizard API to be difficult to use and at times contradictory.  
+This library is meant to be an improvement on the Java Wizard library, formerly at https://wizard.dev.java.net/; that library offered a good framework for simple wizards, but it dictated a great deal of what you can do - justified by the java usability guidelines. However, not all of the restrictions  are justified by those guidelines. For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it). Making this area interactive, as a global navigation tool, is non-trivial.
 
-That said, I learned a lot from the Java Wizard API, and some of those ideas have been incorporated into CJWizards (I had to call it something.)
+In addition, it is extremely cumbersome to define complex wizards that change their branching behavior at runtime.  Generally, the Java Wizard API is difficult to use, and at times contradictory.
+
+That said, we've learned a lot from the Java Wizard API, and some of those ideas have been incorporated into CJWizard.
 
 Take a look at the [FAQ](src/site/markdown/FAQ.md) and [QuickStartGuide](src/site/markdown/quickstart.md) to get going, and send me questions if you have any.
 
-## Screenshots ##
+## Screenshots
 
 This shows CJWizard in action, with a custom PageTemplate (drawing the list of dialog pages on the left) that wraps around a !TitledPageTemplate (drawing the underlined title of the !WizardPage).  The Windows L&F was used to make it look like a native app.  (The Finish button is enabled because the surrounding app is robust to missing data, and allows for the user to come back to the wizard at a later date, if needed.  Generally, and by default, the Finish button is disabled if it is not explicitly enabled, which often happens in the `render()` method of the last !WizardPage)
 
 ![sample dialog](./src/site/resources/images/cjwizard1.png)
 
-## Maven coordinates / JCenter  ##
+## Maven coordinates
 
-CJWizard is hosted on JCenter: https://bintray.com/cjwizard/CJWizard/cjwizard
+CJWizard is now hosted in Lobos Studios' `java-dev` repository.
 
-The dependency section for your pom.xml is:
+To use the repo with Gradle:
 
-```xml
-<dependency>
-  <groupId>com.github.cjwizard</groupId>
-  <artifactId>cjwizard</artifactId>
-  <version>x.y.z</version>
-</dependency>
+```groovy
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repos.lobosstudios.com/repository/java-dev/"
+    }
+}
+
+dependencies {
+    // this is just an example; the other Maven artifacts are
+    // still available, same as before.
+    implementation "com.github.cjwizard:cjwizard:[VERSION]"
+}
 ```
 
-For gradle and ivy users: See "build settings" in https://bintray.com/cjwizard/CJWizard/cjwizard
+To use it with Maven:
 
-## Documentation ##
+```xml
+    <repositories>
+        <repository>
+            <id>lobosstudios-nexus-java-dev</id>
+            <name>Lobos Studios java-dev</name>
+            <url>https://repos.lobosstudios.com/repository/java-dev/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.cjwizard</groupId>
+            <artifactId>cjwizard</artifactId>
+            <version>[VERSION]</version>
+        </dependency>
+    </dependencies>
+```
+
+***repos.lobosstudios.com runs on a Sonatype Nexus server. Repos hosted on Nexus require the slash at the end of the URL. Don't forget it...***
+
+## Documentation
 
 See [docs folder](./src/site/markdown)
 
-## Requirements ##
+## Requirements
 
 To use this library you need
- 
+
 * Java 7 or later
 
-## Dependencies ##
+## Dependencies
 
 This library depends on
- 
+
 * slf4j-api

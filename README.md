@@ -1,11 +1,9 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/cjwizard/cjwizard.svg?branch=master)](https://travis-ci.org/cjwizard/cjwizard)
+## PLEASE NOTE: SPUPORT FOR JAVA 7 IS ENDING, AND THE CJWIZARD PROJECT'S SUPPORT POLICY IS CHANGING.
+Going forward, each new CJWizard release will officially support usage of the library with all OpenJDK versions that have long-term support, PLUS the version that is current, at release time. This change will be effective with the next release of CJWizard.
 
-What:
+# CJWizard
 
 CJWizard is a library for creating swing based wizard dialogs in Java.
-
-Why:
 
 This library is meant to be an improvement on the Java Wizard library, formerly at https://wizard.dev.java.net/; that library offered a good framework for simple wizards, but it dictated a great deal of what you can do - justified by the java usability guidelines. However, not all of the restrictions  are justified by those guidelines. For example, it is particularly difficult to change the type of widget used on the left side of the wizards (it is initially an image with the list of wizard pages displayed over top of it). Making this area interactive, as a global navigation tool, is non-trivial.
 

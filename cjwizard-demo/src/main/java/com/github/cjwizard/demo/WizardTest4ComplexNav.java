@@ -317,7 +317,7 @@ public class WizardTest4ComplexNav extends javax.swing.JDialog {
             
             WizardPage lastViewed = path.get(path.size()-1);
             for (int i=0; i < pages.length; i++) {
-                if (pages[i] == lastViewed) {
+                if (pages[i] == lastViewed && ((i+1) < pages.length)) {
                     log.info("Returning page: " + pages[i+1]);
                     return pages[i+1];
                 }

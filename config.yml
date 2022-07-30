@@ -1,0 +1,43 @@
+  version: 2
+  shared: &shared
+    working_directory: ~/repo
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx1g
+      TERM: dumb
+    steps:
+      - checkout
+      # Run all tests
+      - run: gradle check
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      # run tests!
+      - run: gradle test
+
+  jobs:
+    java-17:
+      docker:
+        - image: circleci/openjdk:17-jdk
+      <<: *shared
+      
+    java-11:
+      docker:
+        - image: circleci/openjdk:11-jdk
+      <<: *shared
+
+    java-8:
+      docker:
+        - image: circleci/openjdk:8-jdk
+      <<: *shared
+

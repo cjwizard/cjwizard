@@ -16,17 +16,17 @@
   jobs:
     java-17:
       docker:
-        - image: cimg/openjdk:17.0-jdk
+        - image: cimg/openjdk:17.0
       <<: *shared
       
     java-11:
       docker:
-        - image: cimg/openjdk:11.0-jdk
+        - image: cimg/openjdk:11.0
       <<: *shared
 
     java-8:
       docker:
-        - image: cimg/openjdk:8.0-jdk
+        - image: cimg/openjdk:8.0
       <<: *shared
 
   workflows:

@@ -11,7 +11,7 @@
       TERM: dumb
     steps:
       - checkout
-      - run: maven-test
+      - run: mvn test
 
   jobs:
     java-17:

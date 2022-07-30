@@ -1,4 +1,8 @@
-  version: 2
+  version: 2.1
+
+  orbs: 
+    maven: circleci/maven@1.3.0
+
   shared: &shared
     working_directory: ~/repo
     environment:
@@ -7,23 +11,7 @@
       TERM: dumb
     steps:
       - checkout
-      # Run all tests
-      - run: gradle check
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: gradle dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      # run tests!
-      - run: gradle test
+      - run: maven-test
 
   jobs:
     java-17:
@@ -40,4 +28,11 @@
       docker:
         - image: circleci/openjdk:8-jdk
       <<: *shared
+
+workflows:
+  build_all:
+    jobs:
+      - java-17
+      - java-11
+      - java-8
 

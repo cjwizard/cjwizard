@@ -29,10 +29,10 @@
         - image: circleci/openjdk:8-jdk
       <<: *shared
 
-workflows:
-  build_all:
-    jobs:
-      - java-17
-      - java-11
-      - java-8
+  workflows:
+    build_all:
+      jobs:
+        - java-17
+        - java-11
+        - java-8
 
